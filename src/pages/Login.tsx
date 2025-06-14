@@ -18,12 +18,20 @@ const Login = () => {
   const [error, setError] = useState("");
   const [message, setMessage] = useState("");
 
+  // Log du statut à chaque render
+  useEffect(() => {
+    console.log("[Login] Render — session:", session, "loading:", loading, "isAdmin:", isAdmin);
+  }, [session, loading, isAdmin]);
+
   // Redirection après connexion selon le rôle
   useEffect(() => {
+    console.log("[Login] Redirection useEffect — session:", session, "loading:", loading, "isAdmin:", isAdmin);
     if (!loading && session) {
       if (isAdmin) {
+        console.log("[Login] User is admin, redirecting to /dashboard");
         navigate("/dashboard", { replace: true });
       } else {
+        console.log("[Login] User is not admin, redirecting to /");
         navigate("/", { replace: true });
       }
     }
@@ -33,6 +41,7 @@ const Login = () => {
     e.preventDefault();
     setError("");
     setMessage("");
+    console.log("[Login] handleAuth: isSignup=", isSignup, "email=", email);
 
     if (isSignup) {
       // SIGN UP
@@ -43,18 +52,27 @@ const Login = () => {
           emailRedirectTo: `${window.location.origin}/dashboard`
         }
       });
-      if (error) setError(error.message);
-      else setMessage("Vérifie ta boîte mail pour confirmer ton inscription !");
+      if (error) {
+        console.log("[Login] Signup error:", error);
+        setError(error.message);
+      }
+      else {
+        setMessage("Vérifie ta boîte mail pour confirmer ton inscription !");
+        console.log("[Login] Signup réussi (vérification email).");
+      }
     } else {
       // SIGN IN
       const { error } = await supabase.auth.signInWithPassword({
         email,
         password,
       });
-      if (error) setError(error.message);
+      if (error) {
+        console.log("[Login] Sign in error:", error);
+        setError(error.message);
+      }
       else {
         setMessage("Connexion réussie !");
-        // Redirection assurée par useEffect ci-dessus
+        console.log("[Login] Sign in réussi, redirection via useEffect à venir.");
       }
     }
   };

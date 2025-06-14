@@ -9,9 +9,18 @@ const Dashboard = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
+    console.log("[Dashboard] Render — user:", user, "isAdmin:", isAdmin, "loading:", loading);
     if (!loading) {
-      if (!user) navigate("/login");
-      else if (!isAdmin) navigate("/");
+      if (!user) {
+        console.log("[Dashboard] Pas d'utilisateur : redirection /login");
+        navigate("/login");
+      }
+      else if (!isAdmin) {
+        console.log("[Dashboard] Utilisateur connecté mais pas admin. Redirection /");
+        navigate("/");
+      } else {
+        console.log("[Dashboard] Utilisateur admin : accès autorisé au dashboard.");
+      }
     }
     // eslint-disable-next-line
   }, [user, isAdmin, loading]);
@@ -34,4 +43,3 @@ const Dashboard = () => {
 };
 
 export default Dashboard;
-

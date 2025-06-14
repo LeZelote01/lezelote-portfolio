@@ -11,12 +11,14 @@ export function useAuth() {
     // 1. Abonnement aux changements d’auth
     const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
       setSession(session);
+      console.log("[useAuth] Auth state changed. Session:", session);
     });
 
     // 2. Au chargement, récupérer la session existante
     supabase.auth.getSession().then(({ data: { session } }) => {
       setSession(session);
       setLoading(false);
+      console.log("[useAuth] Initial session loaded:", session);
     });
 
     return () => subscription.unsubscribe();
@@ -27,14 +29,16 @@ export function useAuth() {
   useEffect(() => {
     if (!session?.user) {
       setIsAdmin(false);
+      console.log("[useAuth] No user in session. isAdmin set to false.");
       return;
     }
     const checkAdmin = async () => {
-      // Appel la fonction Postgres pour vérifier le rôle admin côté serveur
+      console.log("[useAuth] Checking admin role for user:", session.user.id);
       const { data, error } = await supabase.rpc("has_role", {
         _user_id: session.user.id,
         _role: "admin"
       });
+      console.log("[useAuth] Result of has_role RPC — data:", data, "error:", error);
       setIsAdmin(!error && !!data);
     };
     checkAdmin();
@@ -46,6 +50,9 @@ export function useAuth() {
     setIsAdmin(false);
     window.location.href = "/login";
   }, []);
+
+  // Ajout de logs pour voir exactement ce que renvoie le hook à chaque render
+  console.log("[useAuth] Render — session:", session, "isAdmin:", isAdmin, "loading:", loading);
 
   return { session, user: session?.user, isAdmin, signOut, loading };
 }
