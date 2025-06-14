@@ -38,9 +38,7 @@ const Navbar = () => {
         </div>
         <div className="flex items-center gap-4">
           <CVDownloadButton />
-          <Link to="/dashboard" className="font-semibold text-muted-foreground underline opacity-70 hover:opacity-100 text-xs">
-            Admin
-          </Link>
+          {/* Lien Admin supprimé */}
         </div>
       </div>
     </nav>
