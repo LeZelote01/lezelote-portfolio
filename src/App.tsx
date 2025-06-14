@@ -10,6 +10,9 @@ import About from "./pages/About";
 import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
 import DashboardHome from "./dashboard/DashboardHome";
+import ProjectsAdmin from "./dashboard/ProjectsAdmin";
+import SkillsAdmin from "./dashboard/SkillsAdmin";
+import CVAdmin from "./dashboard/CVAdmin";
 
 const queryClient = new QueryClient();
 
@@ -26,6 +29,9 @@ const App = () => (
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/dashboard" element={<DashboardHome />} />
+          <Route path="/dashboard/projects" element={<ProjectsAdmin />} />
+          <Route path="/dashboard/skills" element={<SkillsAdmin />} />
+          <Route path="/dashboard/cv" element={<CVAdmin />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
