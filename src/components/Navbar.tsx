@@ -72,7 +72,6 @@ const Navbar = () => {
                       {/* Dashboard visible que si admin */}
                       {isAdmin && (
                         <li>
-                          {console.log("[Navbar] Dashboard link render")}
                           <SheetClose asChild>
                             <Link
                               to="/dashboard"
@@ -132,7 +131,6 @@ const Navbar = () => {
             {/* Dashboard visible que si admin */}
             {isAdmin && (
               <li>
-                {console.log("[Navbar] Dashboard link render (desktop)")}
                 <Link
                   to="/dashboard"
                   className={cn(
