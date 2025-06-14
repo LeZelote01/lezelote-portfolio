@@ -14,7 +14,7 @@ const Index = () => {
         <meta name="description" content="Portfolio professionnel moderne : projets, compétences, contact et plus encore." />
       </Helmet>
       <Navbar />
-      <main>
+      <main className="flex flex-col min-h-[90vh] justify-center items-center space-y-6 px-2">
         <HeroSection />
         <SkillsGrid />
         <ProjectGallery />
