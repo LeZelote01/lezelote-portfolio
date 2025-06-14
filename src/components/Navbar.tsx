@@ -1,3 +1,4 @@
+
 import { Link, useLocation } from "react-router-dom";
 import { FileText, Home, User, Image, Contact as ContactIcon, Menu } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -28,11 +29,11 @@ const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <nav className="sticky top-0 z-50 w-full border-b border-border bg-gradient-to-r from-fuchsia-400/80 via-sky-300/80 to-indigo-400/80 dark:from-slate-900 dark:via-indigo-900 dark:to-fuchsia-900 transition-colors duration-500 shadow-lg">
+    <nav className="sticky top-0 z-50 w-full border-b border-border bg-background/95 dark:bg-background/90 transition-colors duration-500 shadow-lg backdrop-blur">
       <div className="max-w-7xl mx-auto flex flex-col gap-3 sm:flex-row items-center justify-between px-2 sm:px-8 py-3">
         {/* Logo & Title */}
         <div className="flex items-center justify-between w-full sm:w-auto">
-          <span className="font-bold text-xl sm:text-2xl tracking-tight text-white drop-shadow-lg text-center sm:text-left">
+          <span className="font-bold text-xl sm:text-2xl tracking-tight text-primary drop-shadow-lg text-center sm:text-left">
             Mon Portfolio
           </span>
           {/* Hamburger only on mobile */}
@@ -114,3 +115,4 @@ const Navbar = () => {
   );
 };
 export default Navbar;
+
