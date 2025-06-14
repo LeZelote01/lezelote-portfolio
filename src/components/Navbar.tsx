@@ -28,11 +28,6 @@ const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const { user, isAdmin, signOut } = useAuth();
 
-  const handleDashboardClick = (e: React.MouseEvent) => {
-    console.log("[Navbar] Dashboard link clicked");
-    // Rien de spécial ici, juste un log
-  };
-
   return (
     <nav className="sticky top-0 z-50 w-full border-b border-border bg-background/95 dark:bg-background/90 transition-colors duration-500 shadow-lg backdrop-blur">
       <div className="max-w-7xl mx-auto flex flex-col gap-3 sm:flex-row items-center justify-between px-2 sm:px-8 py-3">
@@ -77,6 +72,7 @@ const Navbar = () => {
                       {/* Dashboard visible que si admin */}
                       {isAdmin && (
                         <li>
+                          {console.log("[Navbar] Dashboard link render")}
                           <SheetClose asChild>
                             <Link
                               to="/dashboard"
@@ -86,7 +82,6 @@ const Navbar = () => {
                                   ? "bg-fuchsia-700 text-white shadow-md"
                                   : "text-fuchsia-900 dark:text-white"
                               )}
-                              onClick={handleDashboardClick}
                             >
                               <Shield size={18} className="mr-3" />
                               Dashboard
@@ -137,6 +132,7 @@ const Navbar = () => {
             {/* Dashboard visible que si admin */}
             {isAdmin && (
               <li>
+                {console.log("[Navbar] Dashboard link render (desktop)")}
                 <Link
                   to="/dashboard"
                   className={cn(
@@ -145,7 +141,6 @@ const Navbar = () => {
                       ? "bg-fuchsia-700 text-white shadow-lg"
                       : "text-fuchsia-900 dark:text-white"
                   )}
-                  onClick={handleDashboardClick}
                 >
                   <Shield size={16} className="mr-2" />
                   Dashboard
