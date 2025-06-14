@@ -20,7 +20,7 @@ const HeroSection = () => {
         <CVDownloadButton />
         <Link
           to="/projects"
-          className="bg-gradient-to-r from-indigo-500 to-fuchsia-500 text-white font-semibold rounded-lg px-5 xs:px-6 py-3 text-center shadow-md hover:scale-105 hover:from-fuchsia-500 hover:to-pink-400 transition-all duration-200 w-full xs:w-auto"
+          className="bg-gradient-to-r from-fuchsia-600 via-indigo-500 to-purple-400 text-white rounded px-5 py-2 hover:brightness-110 hover:from-purple-700 transition-all font-semibold shadow-md border-0"
         >
           Voir mes projets
         </Link>
