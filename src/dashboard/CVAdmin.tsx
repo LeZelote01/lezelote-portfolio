@@ -1,4 +1,3 @@
-
 import { useRef, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
@@ -15,13 +14,13 @@ const CVAdmin = () => {
 
   // Charger l'URL actuelle du CV public
   const fetchCV = async () => {
-    const { data, error } = supabase.storage.from(BUCKET).getPublicUrl(OBJECT_KEY);
-    if (error) {
-      setError("Erreur lors de la récupération du CV.");
-      setCvUrl(null);
-    } else {
-      setCvUrl(data?.publicUrl || null);
+    const { data } = supabase.storage.from(BUCKET).getPublicUrl(OBJECT_KEY);
+    if (data && data.publicUrl && data.publicUrl.endsWith('.pdf')) {
+      setCvUrl(data.publicUrl);
       setError(null);
+    } else {
+      setCvUrl(null);
+      setError("Aucun CV n'est actuellement disponible.");
     }
   };
 
