@@ -1,12 +1,11 @@
 
 import { Link, useLocation } from "react-router-dom";
-import { FileText, Home, User, Image, Contact as ContactIcon, Menu } from "lucide-react";
+import { FileText, Home, User, Image, Contact as ContactIcon, Menu, Shield } from "lucide-react";
 import { cn } from "@/lib/utils";
 import CVDownloadButton from "./CVDownloadButton";
 import ThemeToggle from "./ThemeToggle";
 import LanguageSwitcher from "./LanguageSwitcher";
 import { useTranslation } from "react-i18next";
-// Shadcn Sheet for mobile menu
 import {
   Sheet,
   SheetTrigger,
@@ -14,6 +13,7 @@ import {
   SheetClose,
 } from "@/components/ui/sheet";
 import { useState } from "react";
+import { useAuth } from "@/hooks/useAuth";
 
 const NAV_LINKS = [
   { labelKey: "navbar.home", to: "/", icon: Home },
@@ -27,6 +27,7 @@ const Navbar = () => {
   const { pathname } = useLocation();
   const { t } = useTranslation();
   const [menuOpen, setMenuOpen] = useState(false);
+  const { user, isAdmin, signOut } = useAuth();
 
   return (
     <nav className="sticky top-0 z-50 w-full border-b border-border bg-background/95 dark:bg-background/90 transition-colors duration-500 shadow-lg backdrop-blur">
@@ -44,7 +45,6 @@ const Navbar = () => {
               </SheetTrigger>
               <SheetContent side="left" className="sm:hidden w-64 p-0">
                 <nav className="h-full flex flex-col justify-between py-4">
-                  {/* Header sans bouton croix personnalisé */}
                   <div>
                     <div className="flex items-center justify-between px-5">
                       <span className="font-semibold text-lg">Mon Portfolio</span>
@@ -70,12 +70,40 @@ const Navbar = () => {
                           </SheetClose>
                         </li>
                       ))}
+                      {/* Dashboard visible que si admin */}
+                      {isAdmin && (
+                        <li>
+                          <SheetClose asChild>
+                            <Link
+                              to="/dashboard"
+                              className={cn(
+                                "flex items-center px-6 py-3 text-base font-medium transition-colors hover:bg-fuchsia-100/80 dark:hover:bg-fuchsia-950/40",
+                                pathname === "/dashboard"
+                                  ? "bg-fuchsia-700 text-white shadow-md"
+                                  : "text-fuchsia-900 dark:text-white"
+                              )}
+                            >
+                              <Shield size={18} className="mr-3" />
+                              Dashboard
+                            </Link>
+                          </SheetClose>
+                        </li>
+                      )}
                     </ul>
                   </div>
                   <div className="flex flex-col px-6 gap-2 mt-4 border-t border-border pt-4">
                     <ThemeToggle />
                     <LanguageSwitcher />
                     <CVDownloadButton />
+                    {/* Déconnexion mobile (si connecté/admin) */}
+                    {user && (
+                      <button
+                        onClick={() => { signOut(); setMenuOpen(false); }}
+                        className="mt-2 bg-destructive p-2 text-sm rounded text-white hover:bg-destructive/90 transition font-semibold"
+                      >
+                        Se déconnecter
+                      </button>
+                    )}
                   </div>
                 </nav>
               </SheetContent>
@@ -84,7 +112,6 @@ const Navbar = () => {
         </div>
         {/* Desktop Nav */}
         <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-6 w-full mt-2 sm:mt-0 sm:w-auto">
-          {/* Menu: hide on mobile, show on sm+ */}
           <ul className="hidden sm:flex flex-wrap justify-center items-center gap-1 sm:gap-2 w-full sm:w-auto">
             {NAV_LINKS.map(({ labelKey, to, icon: Icon }) => (
               <li key={to}>
@@ -102,12 +129,38 @@ const Navbar = () => {
                 </Link>
               </li>
             ))}
+            {/* Dashboard visible que si admin */}
+            {isAdmin && (
+              <li>
+                <Link
+                  to="/dashboard"
+                  className={cn(
+                    "flex items-center px-3 py-2 sm:px-4 rounded-md text-xs sm:text-sm font-medium transition-all hover:bg-white/40 hover:text-fuchsia-900 dark:hover:bg-fuchsia-900/40 dark:hover:text-fuchsia-200",
+                    pathname === "/dashboard"
+                      ? "bg-fuchsia-700 text-white shadow-lg"
+                      : "text-fuchsia-900 dark:text-white"
+                  )}
+                >
+                  <Shield size={16} className="mr-2" />
+                  Dashboard
+                </Link>
+              </li>
+            )}
           </ul>
           {/* Desktop Actions: right (hide on mobile) */}
           <div className="hidden sm:flex items-center gap-1 sm:gap-2">
             <ThemeToggle />
             <LanguageSwitcher />
             <CVDownloadButton />
+            {/* Déconnexion (si connecté/admin) */}
+            {user && (
+              <button
+                onClick={signOut}
+                className="ml-2 bg-destructive px-3 py-1.5 rounded text-white text-xs font-medium hover:bg-destructive/90 transition"
+              >
+                Déconnexion
+              </button>
+            )}
           </div>
         </div>
       </div>
@@ -115,4 +168,3 @@ const Navbar = () => {
   );
 };
 export default Navbar;
-

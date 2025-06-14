@@ -5,23 +5,52 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-
-const ADMIN_EMAIL = "admin@portfolio.com";
-const ADMIN_PASSWORD = "admin123"; // À remplacer par sécurisation ultérieure
+import { supabase } from "@/integrations/supabase/client";
+import { useAuth } from "@/hooks/useAuth";
 
 const Login = () => {
+  const { session, loading } = useAuth();
+  const navigate = useNavigate();
+
+  const [isSignup, setIsSignup] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  const navigate = useNavigate();
+  const [message, setMessage] = useState("");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  // Si déjà connecté, redirige vers dashboard ou vers /
+  if (!loading && session) {
+    navigate("/dashboard");
+    return null;
+  }
+
+  const handleAuth = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (email === ADMIN_EMAIL && password === ADMIN_PASSWORD) {
-      setError("");
-      navigate("/dashboard");
+    setError("");
+    setMessage("");
+
+    if (isSignup) {
+      // SIGN UP
+      const { error } = await supabase.auth.signUp({
+        email,
+        password,
+        options: {
+          emailRedirectTo: `${window.location.origin}/dashboard`
+        }
+      });
+      if (error) setError(error.message);
+      else setMessage("Vérifie ta boîte mail pour confirmer ton inscription !");
     } else {
-      setError("Identifiants invalides");
+      // SIGN IN
+      const { error } = await supabase.auth.signInWithPassword({
+        email,
+        password,
+      });
+      if (error) setError(error.message);
+      else {
+        setMessage("Connexion réussie !");
+        // Redirection après login : le hook useAuth s'en chargera
+      }
     }
   };
 
@@ -31,9 +60,11 @@ const Login = () => {
       <main className="min-h-[60vh] flex items-center justify-center">
         <form
           className="w-full max-w-sm bg-card p-8 shadow-md rounded space-y-4 border"
-          onSubmit={handleSubmit}
+          onSubmit={handleAuth}
         >
-          <h2 className="text-xl font-bold mb-2 text-center">Connexion administrateur</h2>
+          <h2 className="text-xl font-bold mb-2 text-center">
+            {isSignup ? "Créer un compte admin" : "Connexion administrateur"}
+          </h2>
           <div>
             <label className="block text-sm font-semibold mb-1" htmlFor="email">
               Email
@@ -41,7 +72,7 @@ const Login = () => {
             <Input
               id="email"
               type="email"
-              placeholder="admin@portfolio.com"
+              placeholder="Votre email"
               value={email}
               onChange={e => setEmail(e.target.value)}
               required
@@ -65,9 +96,25 @@ const Login = () => {
           {error && (
             <div className="text-red-600 text-sm text-center">{error}</div>
           )}
+          {message && (
+            <div className="text-green-700 text-sm text-center">{message}</div>
+          )}
           <Button type="submit" className="w-full">
-            Se connecter
+            {isSignup ? "Créer le compte" : "Se connecter"}
           </Button>
+          <div className="text-center mt-2">
+            <button
+              type="button"
+              className="text-xs underline text-primary"
+              onClick={() => {
+                setError("");
+                setMessage("");
+                setIsSignup(x => !x);
+              }}
+            >
+              {isSignup ? "Déjà un compte ? Se connecter" : "Pas encore de compte ? S’inscrire"}
+            </button>
+          </div>
         </form>
       </main>
       <Footer />
