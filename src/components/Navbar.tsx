@@ -19,18 +19,20 @@ const Navbar = () => {
   const { pathname } = useLocation();
   const { t } = useTranslation();
   return (
-    <nav className="sticky top-0 z-50 w-full bg-background border-b border-border">
+    <nav className="sticky top-0 z-50 w-full border-b border-border bg-gradient-to-r from-fuchsia-400/80 via-sky-300/80 to-indigo-400/80 dark:from-slate-900 dark:via-indigo-900 dark:to-fuchsia-900 transition-colors duration-500 shadow-lg">
       <div className="max-w-7xl mx-auto flex items-center justify-between px-8 py-3">
         <div className="flex items-center gap-6">
-          <span className="font-bold text-2xl tracking-tight text-primary">Mon Portfolio</span>
+          <span className="font-bold text-2xl tracking-tight text-white drop-shadow-lg">Mon Portfolio</span>
           <ul className="flex items-center gap-2">
             {NAV_LINKS.map(({ labelKey, to, icon: Icon }) => (
               <li key={to}>
                 <Link
                   to={to}
                   className={cn(
-                    "flex items-center px-4 py-2 rounded-md text-sm font-medium transition-colors hover:bg-primary/10 hover:text-primary",
-                    pathname === to && "bg-primary text-primary-foreground shadow"
+                    "flex items-center px-4 py-2 rounded-md text-sm font-medium transition-all hover:bg-white/40 hover:text-fuchsia-900 dark:hover:bg-fuchsia-900/40 dark:hover:text-fuchsia-200",
+                    pathname === to
+                      ? "bg-fuchsia-600 text-white shadow-lg dark:bg-fuchsia-900/80 dark:text-white"
+                      : "text-fuchsia-900 dark:text-white"
                   )}
                 >
                   <Icon size={18} className="mr-2" />
@@ -44,7 +46,6 @@ const Navbar = () => {
           <ThemeToggle />
           <LanguageSwitcher />
           <CVDownloadButton />
-          {/* Lien Admin supprimé */}
         </div>
       </div>
     </nav>
