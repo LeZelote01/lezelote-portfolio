@@ -1,7 +1,7 @@
-
 import { useRef, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
+import DashboardLayout from "./DashboardLayout";
 
 const BUCKET = "cv";
 const OBJECT_KEY = "public-cv.pdf";
@@ -47,33 +47,35 @@ const CVAdmin = () => {
   if (cvUrl === null) fetchCV();
 
   return (
-    <section className="max-w-3xl mx-auto bg-white dark:bg-fuchsia-900 p-6 rounded-lg shadow mt-6">
-      <h2 className="text-xl font-bold mb-4">Ajouter ou remplacer le CV (PDF)</h2>
-      {cvUrl && (
-        <div className="mb-4">
-          <a href={cvUrl} target="_blank" rel="noopener" className="text-primary underline">Voir le CV actuel</a>
-        </div>
-      )}
-      {error && <div className="text-red-500">{error}</div>}
-      <form className="flex items-center gap-4 mb-6" onSubmit={handleUpload}>
-        <input
-          type="file"
-          accept="application/pdf"
-          ref={fileInput}
-          className="block border p-2 rounded"
-          required
-          disabled={uploading}
-        />
-        <Button type="submit" variant="default" size="sm" disabled={uploading}>
-          {uploading ? "Upload en cours…" : "Uploader le fichier"}
-        </Button>
-      </form>
-      {cvUrl && (
-        <Button variant="destructive" size="sm" onClick={handleDelete} disabled={uploading}>
-          Supprimer le CV actuel
-        </Button>
-      )}
-    </section>
+    <DashboardLayout>
+      <section className="max-w-3xl mx-auto bg-white dark:bg-fuchsia-900 p-6 rounded-lg shadow mt-6">
+        <h2 className="text-xl font-bold mb-4">Ajouter ou remplacer le CV (PDF)</h2>
+        {cvUrl && (
+          <div className="mb-4">
+            <a href={cvUrl} target="_blank" rel="noopener" className="text-primary underline">Voir le CV actuel</a>
+          </div>
+        )}
+        {error && <div className="text-red-500">{error}</div>}
+        <form className="flex items-center gap-4 mb-6" onSubmit={handleUpload}>
+          <input
+            type="file"
+            accept="application/pdf"
+            ref={fileInput}
+            className="block border p-2 rounded"
+            required
+            disabled={uploading}
+          />
+          <Button type="submit" variant="default" size="sm" disabled={uploading}>
+            {uploading ? "Upload en cours…" : "Uploader le fichier"}
+          </Button>
+        </form>
+        {cvUrl && (
+          <Button variant="destructive" size="sm" onClick={handleDelete} disabled={uploading}>
+            Supprimer le CV actuel
+          </Button>
+        )}
+      </section>
+    </DashboardLayout>
   );
 };
 export default CVAdmin;
