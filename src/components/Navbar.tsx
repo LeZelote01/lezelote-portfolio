@@ -1,4 +1,3 @@
-
 import { Link, useLocation } from "react-router-dom";
 import { FileText, Home, User, Image, Contact as ContactIcon, Menu, Shield } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -28,6 +27,11 @@ const Navbar = () => {
   const { t } = useTranslation();
   const [menuOpen, setMenuOpen] = useState(false);
   const { user, isAdmin, signOut } = useAuth();
+
+  const handleDashboardClick = (e: React.MouseEvent) => {
+    console.log("[Navbar] Dashboard link clicked");
+    // Rien de spécial ici, juste un log
+  };
 
   return (
     <nav className="sticky top-0 z-50 w-full border-b border-border bg-background/95 dark:bg-background/90 transition-colors duration-500 shadow-lg backdrop-blur">
@@ -82,6 +86,7 @@ const Navbar = () => {
                                   ? "bg-fuchsia-700 text-white shadow-md"
                                   : "text-fuchsia-900 dark:text-white"
                               )}
+                              onClick={handleDashboardClick}
                             >
                               <Shield size={18} className="mr-3" />
                               Dashboard
@@ -140,6 +145,7 @@ const Navbar = () => {
                       ? "bg-fuchsia-700 text-white shadow-lg"
                       : "text-fuchsia-900 dark:text-white"
                   )}
+                  onClick={handleDashboardClick}
                 >
                   <Shield size={16} className="mr-2" />
                   Dashboard
