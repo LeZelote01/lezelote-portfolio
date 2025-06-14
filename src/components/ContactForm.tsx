@@ -5,6 +5,7 @@ import { useTranslation } from "react-i18next";
 import { Input } from "./ui/input";
 import { Textarea } from "./ui/textarea";
 import { Button } from "./ui/button";
+import { supabase } from "@/integrations/supabase/client";
 
 const emailRegex = /^[\w-.]+@([\w-]+\.)+[\w-]{2,}$/i;
 
@@ -33,16 +34,34 @@ const ContactForm = () => {
     setFields(f => ({ ...f, [e.target.name]: e.target.value }));
   }
 
-  function handleSubmit(e: React.FormEvent) {
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     if (!validate()) return;
     setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
-      setFields({ name: "", email: "", message: "" });
-      setErrors({});
-      toast({ title: t("contact.sent"), description: t("contact.success") });
-    }, 1200);
+
+    // Enregistrement Supabase
+    const { error } = await supabase.from("messages").insert([
+      {
+        name: fields.name,
+        email: fields.email,
+        message: fields.message,
+      },
+    ]);
+
+    setLoading(false);
+
+    if (error) {
+      toast({
+        title: t("contact.error"),
+        description: t("contact.error_detail"),
+        variant: "destructive",
+      });
+      return;
+    }
+
+    setFields({ name: "", email: "", message: "" });
+    setErrors({});
+    toast({ title: t("contact.sent"), description: t("contact.success") });
   }
 
   return (

@@ -1,29 +1,43 @@
+
 import React from "react";
 import { FileText } from "lucide-react";
+import { useQuery } from "@tanstack/react-query";
+import { supabase } from "@/integrations/supabase/client";
 
-const skills = [
-  { name: "JavaScript", level: "Avancé", icon: FileText },
-  { name: "React", level: "Avancé", icon: FileText },
-  { name: "TypeScript", level: "Intermédiaire", icon: FileText },
-  { name: "Node.js", level: "Intermédiaire", icon: FileText },
-  { name: "Tailwind CSS", level: "Avancé", icon: FileText },
-  { name: "Gestion de projet", level: "Avancé", icon: FileText },
-];
+const fetchSkills = async () => {
+  const { data, error } = await supabase
+    .from("skills")
+    .select("id, name, level")
+    .order("created_at", { ascending: true });
+  if (error) throw new Error(error.message);
+  return data || [];
+};
 
 const SkillsGrid = () => {
+  const { data: skills, isLoading, error } = useQuery({
+    queryKey: ["skills"],
+    queryFn: fetchSkills,
+  });
+
   return (
     <section className="max-w-5xl mx-auto py-16 animate-fade-in">
       <h2 className="text-3xl font-bold mb-8 text-primary">Compétences</h2>
+      {isLoading && <div>Chargement…</div>}
+      {error && <div className="text-red-500">Erreur de chargement : {error.message}</div>}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-        {skills.map(({ name, level, icon: Icon }) => (
-          <div key={name} className="flex items-center bg-card rounded-lg shadow px-6 py-5 gap-4 border hover:shadow-lg transition-all">
-            <Icon size={28} className="text-primary" />
-            <div>
-              <div className="font-semibold text-lg">{name}</div>
-              <div className="text-xs text-muted-foreground">{level}</div>
+        {skills?.length ? (
+          skills.map(({ id, name, level }) => (
+            <div key={id} className="flex items-center bg-card rounded-lg shadow px-6 py-5 gap-4 border hover:shadow-lg transition-all">
+              <FileText size={28} className="text-primary" />
+              <div>
+                <div className="font-semibold text-lg">{name}</div>
+                <div className="text-xs text-muted-foreground">{level}</div>
+              </div>
             </div>
-          </div>
-        ))}
+          ))
+        ) : !isLoading ? (
+          <div className="col-span-full text-muted-foreground">Aucune compétence enregistrée.</div>
+        ) : null}
       </div>
     </section>
   );
