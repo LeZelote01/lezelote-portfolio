@@ -20,17 +20,17 @@ const SkillsGrid = () => {
   });
 
   return (
-    <section className="max-w-5xl mx-auto py-16 animate-fade-in">
-      <h2 className="text-3xl font-bold mb-8 text-primary">Compétences</h2>
+    <section className="max-w-5xl mx-auto py-10 sm:py-16 animate-fade-in px-2 sm:px-0">
+      <h2 className="text-2xl sm:text-3xl font-bold mb-6 sm:mb-8 text-primary text-center">Compétences</h2>
       {isLoading && <div>Chargement…</div>}
       {error && <div className="text-red-500">Erreur de chargement : {error.message}</div>}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 sm:gap-8">
         {skills?.length ? (
           skills.map(({ id, name, level }) => (
-            <div key={id} className="flex items-center bg-card rounded-lg shadow px-6 py-5 gap-4 border hover:shadow-lg transition-all">
-              <FileText size={28} className="text-primary" />
+            <div key={id} className="flex items-center bg-card rounded-lg shadow px-4 sm:px-6 py-4 sm:py-5 gap-4 border hover:shadow-lg transition-all">
+              <FileText size={24} className="text-primary" />
               <div>
-                <div className="font-semibold text-lg">{name}</div>
+                <div className="font-semibold text-base sm:text-lg">{name}</div>
                 <div className="text-xs text-muted-foreground">{level}</div>
               </div>
             </div>
