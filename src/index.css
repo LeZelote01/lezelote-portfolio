@@ -99,8 +99,8 @@
 
   body {
     @apply bg-background text-foreground;
-    /* Ajout d’un joli dégradé coloré en fond de page */
-    background: linear-gradient(135deg, #f6d365 0%, #fda085 50%, #fbc2eb 100%);
+    /* Dégradé bleu discret en fond de page */
+    background: linear-gradient(135deg, #e0e7ff 0%, #bae6fd 40%, #f0f9ff 100%);
     background-attachment: fixed;
   }
 }
