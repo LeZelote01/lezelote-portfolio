@@ -1,4 +1,3 @@
-
 import { Link, useLocation } from "react-router-dom";
 import { FileText, Home, User, Image, Contact as ContactIcon, Menu } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -44,18 +43,10 @@ const Navbar = () => {
               </SheetTrigger>
               <SheetContent side="left" className="sm:hidden w-64 p-0">
                 <nav className="h-full flex flex-col justify-between py-4">
-                  {/* Close button */}
+                  {/* Header sans bouton croix personnalisé */}
                   <div>
                     <div className="flex items-center justify-between px-5">
                       <span className="font-semibold text-lg">Mon Portfolio</span>
-                      <SheetClose asChild>
-                        <button
-                          className="p-1 text-gray-600 dark:text-fuchsia-100 hover:text-fuchsia-600 focus:outline-none"
-                          aria-label="Fermer le menu"
-                        >
-                          ×
-                        </button>
-                      </SheetClose>
                     </div>
                     <ul className="mt-6 flex flex-col gap-1">
                       {NAV_LINKS.map(({ labelKey, to, icon: Icon }) => (
