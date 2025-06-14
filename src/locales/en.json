@@ -1,0 +1,23 @@
+
+{
+  "navbar": {
+    "home": "Home",
+    "skills": "Skills",
+    "projects": "Projects",
+    "about": "About",
+    "contact": "Contact"
+  },
+  "contact": {
+    "title": "Contact",
+    "name": "Name",
+    "email": "Email",
+    "message": "Message",
+    "submit": "Send",
+    "sending": "Sending...",
+    "sent": "Message sent",
+    "success": "Thanks for your message, I’ll be in touch soon!",
+    "invalid_email": "Invalid email.",
+    "invalid_name": "Name required (2+ characters).",
+    "invalid_message": "Message must be at least 10 characters."
+  }
+}

@@ -1,10 +1,33 @@
 
 import { useState } from "react";
 import { toast } from "@/hooks/use-toast";
+import { useTranslation } from "react-i18next";
+import { Input } from "./ui/input";
+import { Textarea } from "./ui/textarea";
+import { Button } from "./ui/button";
+
+const emailRegex = /^[\w-.]+@([\w-]+\.)+[\w-]{2,}$/i;
 
 const ContactForm = () => {
   const [fields, setFields] = useState({ name: "", email: "", message: "" });
   const [loading, setLoading] = useState(false);
+  const [errors, setErrors] = useState<{ name?: string; email?: string; message?: string }>({});
+  const { t } = useTranslation();
+
+  function validate() {
+    const errs: typeof errors = {};
+    if (!fields.name || fields.name.length < 2) {
+      errs.name = t("contact.invalid_name");
+    }
+    if (!emailRegex.test(fields.email)) {
+      errs.email = t("contact.invalid_email");
+    }
+    if (!fields.message || fields.message.length < 10) {
+      errs.message = t("contact.invalid_message");
+    }
+    setErrors(errs);
+    return Object.keys(errs).length === 0;
+  }
 
   function handleChange(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
     setFields(f => ({ ...f, [e.target.name]: e.target.value }));
@@ -12,60 +35,64 @@ const ContactForm = () => {
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
+    if (!validate()) return;
     setLoading(true);
-    // Simule l'envoi (pour vraie gestion, brancher Supabase)
     setTimeout(() => {
       setLoading(false);
       setFields({ name: "", email: "", message: "" });
-      toast({ title: "Message envoyé", description: "Merci pour ton message, je reviens vite vers toi !" });
+      setErrors({});
+      toast({ title: t("contact.sent"), description: t("contact.success") });
     }, 1200);
   }
 
   return (
-    <form className="space-y-6 bg-card rounded-lg shadow p-8 max-w-md mx-auto" onSubmit={handleSubmit}>
-      <h2 className="text-2xl font-bold mb-2 text-primary">Contact</h2>
+    <form className="space-y-6 bg-card rounded-lg shadow p-8 max-w-md mx-auto" onSubmit={handleSubmit} noValidate>
+      <h2 className="text-2xl font-bold mb-2 text-primary">{t("contact.title")}</h2>
       <div>
-        <label className="block text-sm font-medium mb-1">Nom</label>
-        <input
+        <label className="block text-sm font-medium mb-1" htmlFor="contact-name">{t("contact.name")}</label>
+        <Input
+          id="contact-name"
           type="text"
           name="name"
           required
-          className="w-full rounded border px-3 py-2 focus:outline-none focus:ring focus:border-primary"
           autoComplete="off"
           value={fields.name}
           onChange={handleChange}
         />
+        {errors.name && <div className="text-destructive text-xs mt-1">{errors.name}</div>}
       </div>
       <div>
-        <label className="block text-sm font-medium mb-1">Email</label>
-        <input
+        <label className="block text-sm font-medium mb-1" htmlFor="contact-email">{t("contact.email")}</label>
+        <Input
+          id="contact-email"
           type="email"
           name="email"
           required
-          className="w-full rounded border px-3 py-2 focus:outline-none focus:ring focus:border-primary"
           autoComplete="off"
           value={fields.email}
           onChange={handleChange}
         />
+        {errors.email && <div className="text-destructive text-xs mt-1">{errors.email}</div>}
       </div>
       <div>
-        <label className="block text-sm font-medium mb-1">Message</label>
-        <textarea
+        <label className="block text-sm font-medium mb-1" htmlFor="contact-message">{t("contact.message")}</label>
+        <Textarea
+          id="contact-message"
           name="message"
           required
           rows={4}
-          className="w-full rounded border px-3 py-2 focus:outline-none focus:ring focus:border-primary"
           value={fields.message}
           onChange={handleChange}
         />
+        {errors.message && <div className="text-destructive text-xs mt-1">{errors.message}</div>}
       </div>
-      <button
+      <Button
         type="submit"
-        className="bg-primary text-primary-foreground font-semibold px-6 py-2 mt-2 rounded hover:bg-primary/90 transition-all"
+        className="font-semibold w-full"
         disabled={loading}
       >
-        {loading ? "Envoi..." : "Envoyer"}
-      </button>
+        {loading ? t("contact.sending") : t("contact.submit")}
+      </Button>
     </form>
   );
 };

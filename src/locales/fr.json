@@ -1,0 +1,23 @@
+
+{
+  "navbar": {
+    "home": "Accueil",
+    "skills": "Compétences",
+    "projects": "Projets",
+    "about": "À propos",
+    "contact": "Contact"
+  },
+  "contact": {
+    "title": "Contact",
+    "name": "Nom",
+    "email": "Email",
+    "message": "Message",
+    "submit": "Envoyer",
+    "sending": "Envoi...",
+    "sent": "Message envoyé",
+    "success": "Merci pour ton message, je reviens vite vers toi !",
+    "invalid_email": "Email invalide.",
+    "invalid_name": "Nom requis (2+ caractères).",
+    "invalid_message": "Le message doit faire 10 caractères minimum."
+  }
+}
