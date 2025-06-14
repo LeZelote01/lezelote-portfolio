@@ -1,3 +1,4 @@
+
 import { useRef, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
@@ -12,13 +13,19 @@ const CVAdmin = () => {
   const [cvUrl, setCvUrl] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
 
-  // Get URL of the current CV (if exists)
+  // Charger l'URL actuelle du CV public
   const fetchCV = async () => {
-    const { data } = supabase.storage.from(BUCKET).getPublicUrl(OBJECT_KEY);
-    setCvUrl(data?.publicUrl || null);
+    const { data, error } = supabase.storage.from(BUCKET).getPublicUrl(OBJECT_KEY);
+    if (error) {
+      setError("Erreur lors de la récupération du CV.");
+      setCvUrl(null);
+    } else {
+      setCvUrl(data?.publicUrl || null);
+      setError(null);
+    }
   };
 
-  // Upload new CV (overwrite)
+  // Upload d'un nouveau CV (réservé admin RLS)
   const handleUpload = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!fileInput.current?.files?.[0]) return;
@@ -30,29 +37,46 @@ const CVAdmin = () => {
       contentType: "application/pdf",
     });
     setUploading(false);
-    if (error) setError("Erreur à l'upload du fichier.");
-    else fetchCV();
+    if (error) {
+      if (error.message.includes("Unauthorized")) {
+        setError("Vous n'avez pas l'autorisation pour envoyer un CV (réservé aux admins).");
+      } else {
+        setError("Erreur à l'upload du fichier.");
+      }
+    } else {
+      fetchCV();
+    }
   };
 
-  // Supprimer le CV
+  // Suppression du CV (réservé admin RLS)
   const handleDelete = async () => {
     setUploading(true);
     setError(null);
-    await supabase.storage.from(BUCKET).remove([OBJECT_KEY]);
+    const { error } = await supabase.storage.from(BUCKET).remove([OBJECT_KEY]);
     setUploading(false);
-    fetchCV();
+    if (error) {
+      if (error.message.includes("Unauthorized")) {
+        setError("Vous n'avez pas l'autorisation pour supprimer ce CV.");
+      } else {
+        setError("Erreur à la suppression du fichier.");
+      }
+    } else {
+      fetchCV();
+    }
   };
 
-  // fetch CV on mount
+  // Chargement CV à l'ouverture
   if (cvUrl === null) fetchCV();
 
   return (
     <DashboardLayout>
       <section className="max-w-3xl mx-auto bg-white dark:bg-fuchsia-900 p-6 rounded-lg shadow mt-6">
-        <h2 className="text-xl font-bold mb-4">Ajouter ou remplacer le CV (PDF)</h2>
+        <h2 className="text-xl font-bold mb-4">Ajouter ou remplacer le CV (PDF sur le bucket cv)</h2>
         {cvUrl && (
           <div className="mb-4">
-            <a href={cvUrl} target="_blank" rel="noopener" className="text-primary underline">Voir le CV actuel</a>
+            <a href={cvUrl} target="_blank" rel="noopener" className="text-primary underline">
+              Voir le CV actuel
+            </a>
           </div>
         )}
         {error && <div className="text-red-500">{error}</div>}
