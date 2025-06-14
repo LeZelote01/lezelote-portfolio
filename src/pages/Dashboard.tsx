@@ -1,6 +1,4 @@
 
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
 import AdminDashboard from "@/components/admin/AdminDashboard";
 import { useAuth } from "@/hooks/useAuth";
 import { useEffect } from "react";
@@ -21,25 +19,19 @@ const Dashboard = () => {
   if (loading || !user || !isAdmin) {
     // Loading ou redirection...
     return (
-      <>
-        <Navbar />
-        <main className="min-h-[60vh] flex items-center justify-center">
-          <div className="animate-pulse text-lg text-muted-foreground">Chargement…</div>
-        </main>
-        <Footer />
-      </>
+      <main className="min-h-[60vh] flex items-center justify-center">
+        <div className="animate-pulse text-lg text-muted-foreground">Chargement…</div>
+      </main>
     );
   }
 
+  // Dashboard strict : pas de navbar, pas de footer, juste l’admin
   return (
-    <>
-      <Navbar />
-      <main>
-        <AdminDashboard />
-      </main>
-      <Footer />
-    </>
+    <main>
+      <AdminDashboard />
+    </main>
   );
 };
 
 export default Dashboard;
+
