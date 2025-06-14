@@ -1,5 +1,5 @@
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -9,7 +9,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/hooks/useAuth";
 
 const Login = () => {
-  const { session, loading } = useAuth();
+  const { session, loading, isAdmin } = useAuth();
   const navigate = useNavigate();
 
   const [isSignup, setIsSignup] = useState(false);
@@ -18,11 +18,16 @@ const Login = () => {
   const [error, setError] = useState("");
   const [message, setMessage] = useState("");
 
-  // Si déjà connecté, redirige vers dashboard ou vers /
-  if (!loading && session) {
-    navigate("/dashboard");
-    return null;
-  }
+  // Redirection après connexion selon le rôle
+  useEffect(() => {
+    if (!loading && session) {
+      if (isAdmin) {
+        navigate("/dashboard", { replace: true });
+      } else {
+        navigate("/", { replace: true });
+      }
+    }
+  }, [session, loading, isAdmin, navigate]);
 
   const handleAuth = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -49,7 +54,7 @@ const Login = () => {
       if (error) setError(error.message);
       else {
         setMessage("Connexion réussie !");
-        // Redirection après login : le hook useAuth s'en chargera
+        // Redirection assurée par useEffect ci-dessus
       }
     }
   };
