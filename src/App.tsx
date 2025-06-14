@@ -13,6 +13,7 @@ import DashboardHome from "./dashboard/DashboardHome";
 import ProjectsAdmin from "./dashboard/ProjectsAdmin";
 import SkillsAdmin from "./dashboard/SkillsAdmin";
 import CVAdmin from "./dashboard/CVAdmin";
+import AuthPage from "./pages/Auth";
 
 const queryClient = new QueryClient();
 
@@ -32,6 +33,7 @@ const App = () => (
           <Route path="/dashboard/projects" element={<ProjectsAdmin />} />
           <Route path="/dashboard/skills" element={<SkillsAdmin />} />
           <Route path="/dashboard/cv" element={<CVAdmin />} />
+          <Route path="/auth" element={<AuthPage />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
