@@ -18,8 +18,8 @@ export function useSkillsAdmin() {
 
   // Create skill
   const create = useMutation({
-    mutationFn: async ({ name, level }: { name: string; level: string }) => {
-      const { data, error } = await supabase.from("skills").insert([{ name, level }]).select();
+    mutationFn: async ({ name, name_en, level }: { name: string; name_en: string; level: string }) => {
+      const { data, error } = await supabase.from("skills").insert([{ name, name_en, level }]).select();
       if (error) throw new Error(error.message);
       return data?.[0];
     },
@@ -28,8 +28,8 @@ export function useSkillsAdmin() {
 
   // Update skill
   const update = useMutation({
-    mutationFn: async ({ id, name, level }: { id: string; name: string; level: string }) => {
-      const { data, error } = await supabase.from("skills").update({ name, level }).eq("id", id).select();
+    mutationFn: async ({ id, name, name_en, level }: { id: string; name: string; name_en: string; level: string }) => {
+      const { data, error } = await supabase.from("skills").update({ name, name_en, level }).eq("id", id).select();
       if (error) throw new Error(error.message);
       return data?.[0];
     },

@@ -1,10 +1,11 @@
+
 import { useSkillsAdmin } from "@/hooks/useSkillsAdmin";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Plus, Edit, Trash2 } from "lucide-react";
 import DashboardLayout from "./DashboardLayout";
 
-const EmptySkill = { name: "", level: "" };
+const EmptySkill = { name: "", name_en: "", level: "" };
 
 const SkillsAdmin = () => {
   const { data, isLoading, error, create, update, remove } = useSkillsAdmin();
@@ -13,7 +14,7 @@ const SkillsAdmin = () => {
   const [showForm, setShowForm] = useState(false);
 
   const handleEdit = (skill: any) => {
-    setForm({ name: skill.name ?? "", level: skill.level ?? "" });
+    setForm({ name: skill.name ?? "", name_en: skill.name_en ?? "", level: skill.level ?? "" });
     setEditId(skill.id);
     setShowForm(true);
   };
@@ -47,10 +48,17 @@ const SkillsAdmin = () => {
           <form className="space-y-4 mb-6" onSubmit={handleSubmit}>
             <input
               className="border rounded px-3 py-2 w-full"
-              placeholder="Nom"
+              placeholder="Nom (français)"
               value={form.name}
               required
               onChange={e => setForm(f => ({ ...f, name: e.target.value }))}
+            />
+            <input
+              className="border rounded px-3 py-2 w-full"
+              placeholder="Nom (anglais)"
+              value={form.name_en}
+              required
+              onChange={e => setForm(f => ({ ...f, name_en: e.target.value }))}
             />
             <input
               className="border rounded px-3 py-2 w-full"
@@ -73,7 +81,9 @@ const SkillsAdmin = () => {
           {data?.map((s: any) => (
             <li key={s.id} className="flex items-center justify-between py-3">
               <div>
-                <div className="font-medium">{s.name}</div>
+                <div className="font-medium">
+                  {s.name} <span className="text-xs text-gray-400">/ {s.name_en}</span>
+                </div>
                 <div className="text-xs text-gray-500">{s.level}</div>
               </div>
               <div className="flex gap-2">
