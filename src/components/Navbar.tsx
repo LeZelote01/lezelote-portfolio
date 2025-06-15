@@ -1,4 +1,3 @@
-
 import { Link, useLocation } from "react-router-dom";
 import { FileText, Home, User, Image, Contact as ContactIcon, Menu } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -35,19 +34,19 @@ const Navbar = () => {
           <Link
             to="/"
             className={cn(
-              "flex items-center gap-2 font-extrabold text-xl md:text-2xl tracking-tight", // taille accentuée
-              "bg-white text-fuchsia-900 px-3 py-1 rounded-lg text-center md:text-left shadow hover:underline border border-fuchsia-200 transition",
+              "flex items-center gap-2 font-extrabold text-xl md:text-2xl tracking-tight",
+              "bg-white text-fuchsia-900 px-3 py-1 rounded-lg text-center md:text-left shadow border border-fuchsia-200 transition",
               "dark:bg-fuchsia-900 dark:text-white dark:border-white/20"
             )}
             tabIndex={0}
             style={{
-              fontFamily: "inherit" // optionnel : pour rester cohérent
+              fontFamily: "inherit"
             }}
           >
             Mon Portfolio
           </Link>
-          {/* Hamburger menu visible jusqu'à md */}
-          <div className="md:hidden flex items-center">
+          {/* Hamburger menu visible jusqu'à LG */}
+          <div className="lg:hidden flex items-center">
             <Sheet open={menuOpen} onOpenChange={setMenuOpen}>
               <SheetTrigger aria-label="Ouvrir le menu de navigation" className="p-2 rounded-md hover:bg-white/30 dark:hover:bg-fuchsia-900/30 transition">
                 <Menu size={28} />
@@ -100,7 +99,7 @@ const Navbar = () => {
         </div>
         {/* Desktop Nav */}
         <div className="flex flex-col md:flex-row items-center gap-2 md:gap-6 w-full mt-2 md:mt-0 md:w-auto">
-          <ul className="hidden md:flex flex-wrap justify-center items-center gap-1 md:gap-2 w-full md:w-auto">
+          <ul className="hidden lg:flex flex-wrap justify-center items-center gap-1 md:gap-2 w-full md:w-auto">
             {NAV_LINKS.map(({ labelKey, to, icon: Icon }) => (
               <li key={to}>
                 <Link
@@ -119,7 +118,7 @@ const Navbar = () => {
             ))}
           </ul>
           {/* Desktop Actions: right (caché sur mobile et tablette) */}
-          <div className="hidden md:flex items-center gap-1 md:gap-2">
+          <div className="hidden lg:flex items-center gap-1 md:gap-2">
             <ThemeToggle />
             <LanguageSwitcher />
             <CVDownloadButton />
@@ -130,4 +129,3 @@ const Navbar = () => {
   );
 };
 export default Navbar;
-
