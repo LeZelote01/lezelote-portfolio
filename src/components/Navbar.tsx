@@ -30,7 +30,7 @@ const Navbar = () => {
     <nav className="sticky top-0 z-50 w-full border-b border-border bg-background/95 dark:bg-background/90 transition-colors duration-500 shadow-lg backdrop-blur">
       <div className="max-w-7xl mx-auto flex flex-col gap-3 md:flex-row items-center justify-between px-2 sm:px-8 py-3">
         {/* Row with logo & hamburger - bien mettre logo à gauche, burger à droite*/}
-        <div className="flex flex-row items-center justify-between w-full md:w-full">
+        <div className="flex items-center justify-between w-full md:w-auto">
           <Link
             to="/"
             className={cn(
