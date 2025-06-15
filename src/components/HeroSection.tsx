@@ -1,4 +1,3 @@
-
 import React from "react";
 import CVDownloadButton from "./CVDownloadButton";
 import { Link } from "react-router-dom";
@@ -17,7 +16,7 @@ const HeroSection = () => {
           <img
             src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=facearea&w=200&h=200&facepad=3"
             alt="Jean Yves - portrait"
-            className="w-32 h-32 rounded-full object-cover border-4 border-fuchsia-300 shadow-lg bg-white dark:bg-fuchsia-950"
+            className="w-36 h-36 rounded-full object-cover border-4 border-fuchsia-300 shadow-lg bg-white dark:bg-fuchsia-950"
             draggable={false}
           />
         </div>
