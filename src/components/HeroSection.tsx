@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
 const HeroSection = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
 
   return (
     <section className="relative w-full min-h-[60vh] flex flex-col items-center justify-center gap-8 py-8 sm:py-20 bg-gradient-to-br from-primary/10 via-purple-100 to-indigo-100 dark:from-primary/30 dark:via-primary/10 dark:to-background animate-fade-in px-2 sm:px-0">
@@ -14,6 +14,18 @@ const HeroSection = () => {
       <h1 className="relative z-10 text-2xl xs:text-3xl md:text-5xl font-extrabold mb-2 text-center bg-gradient-to-r from-primary to-fuchsia-700 via-indigo-600 text-transparent bg-clip-text leading-tight">
         {t("hero.greeting")}
       </h1>
+      {/* Ajout phrase de présentation enrichie juste après le h1 */}
+      <div className="relative z-10 max-w-xl mx-auto text-center text-base sm:text-lg text-muted-foreground">
+        {i18n.language === "fr" ? (
+          <>
+            Explorez les différents domaines où j'interviens, de l'audit de sécurité au développement d'outils Python, en passant par l'analyse de réseaux. N'hésitez pas à me contacter pour toute collaboration ou question&nbsp;!
+          </>
+        ) : (
+          <>
+            Discover the various areas I work in, from security audits and Python tool development to in-depth network analysis. Feel free to contact me for any collaboration or inquiry!
+          </>
+        )}
+      </div>
       <h2 className="relative z-10 text-primary text-base md:text-2xl font-semibold mb-0 text-center">{t("hero.subtitle")}</h2>
       <p className="relative z-10 max-w-xs xs:max-w-sm sm:max-w-2xl text-base md:text-xl text-muted-foreground mb-1 text-center drop-shadow-lg">
         {t("hero.paragraph1")}
