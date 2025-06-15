@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { toast } from "@/hooks/use-toast";
 import { useTranslation } from "react-i18next";
@@ -6,15 +5,15 @@ import { Input } from "./ui/input";
 import { Textarea } from "./ui/textarea";
 import { Button } from "./ui/button";
 import { supabase } from "@/integrations/supabase/client";
-import { Linkedin, Twitter, Instagram } from "lucide-react";
+import { Linkedin, Twitter, Facebook, Send, Mail } from "lucide-react";
 
 const emailRegex = /^[\w-.]+@([\w-]+\.)+[\w-]{2,}$/i;
 
 const SOCIAL_LINKS = [
   {
-    name: "LinkedIn",
-    icon: Linkedin,
-    url: "https://linkedin.com/in/votre-profil", // Remplace par ton vrai lien LinkedIn
+    name: "Facebook",
+    icon: Facebook,
+    url: "https://facebook.com/votreprofil", // Remplace par ton vrai lien Facebook
   },
   {
     name: "Twitter",
@@ -22,9 +21,19 @@ const SOCIAL_LINKS = [
     url: "https://twitter.com/votreprofil", // Remplace par ton vrai lien Twitter
   },
   {
-    name: "Instagram",
-    icon: Instagram,
-    url: "https://instagram.com/votreprofil", // Remplace par ton vrai lien Instagram
+    name: "LinkedIn",
+    icon: Linkedin,
+    url: "https://linkedin.com/in/votre-profil", // Remplace par ton vrai lien LinkedIn
+  },
+  {
+    name: "Telegram",
+    icon: Send,
+    url: "https://t.me/votreprofil", // Remplace par ton vrai lien Telegram
+  },
+  {
+    name: "Gmail",
+    icon: Mail,
+    url: "mailto:ton.email@gmail.com", // Remplace par ton vrai e-mail
   }
 ];
 
@@ -58,7 +67,6 @@ const ContactForm = () => {
     if (!validate()) return;
     setLoading(true);
 
-    // Enregistrement Supabase
     const { error } = await supabase.from("messages").insert([
       {
         name: fields.name,
@@ -142,7 +150,7 @@ const ContactForm = () => {
               key={name}
               href={url}
               target="_blank"
-              rel="noopener noreferrer"
+              rel={name === "Gmail" ? undefined : "noopener noreferrer"}
               aria-label={name}
               className="rounded-full bg-background border border-border p-2 hover:bg-primary/10 dark:hover:bg-primary/40 transition-transform hover:-translate-y-1"
             >
@@ -156,4 +164,3 @@ const ContactForm = () => {
 };
 
 export default ContactForm;
-
