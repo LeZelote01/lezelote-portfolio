@@ -1,10 +1,11 @@
+
 import { useRef, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import DashboardLayout from "./DashboardLayout";
 
 const BUCKET = "cv";
-const OBJECT_KEY = "public-cv.pdf";
+const OBJECT_KEY = "lezelote-CV.pdf";
 
 const CVAdmin = () => {
   const fileInput = useRef<HTMLInputElement | null>(null);
@@ -102,3 +103,4 @@ const CVAdmin = () => {
   );
 };
 export default CVAdmin;
+

@@ -9,7 +9,8 @@ export default function usePublicCVUrl() {
   useEffect(() => {
     async function fetchCVUrl() {
       setLoading(true);
-      const { data } = supabase.storage.from("cv").getPublicUrl("public-cv.pdf");
+      // Utiliser le nom de fichier standardisé
+      const { data } = supabase.storage.from("cv").getPublicUrl("lezelote-CV.pdf");
       if (data && data.publicUrl && data.publicUrl.endsWith(".pdf")) {
         setCvUrl(data.publicUrl);
       } else {
