@@ -32,9 +32,13 @@ const Navbar = () => {
       <div className="max-w-7xl mx-auto flex flex-col gap-3 sm:flex-row items-center justify-between px-2 sm:px-8 py-3">
         {/* Logo & Title */}
         <div className="flex items-center justify-between w-full sm:w-auto">
-          <span className="font-bold text-xl sm:text-2xl tracking-tight text-primary drop-shadow-lg text-center sm:text-left">
+          <Link
+            to="/"
+            className="font-bold text-xl sm:text-2xl tracking-tight text-primary drop-shadow-lg text-center sm:text-left hover:underline"
+            tabIndex={0}
+          >
             Mon Portfolio
-          </span>
+          </Link>
           {/* Hamburger only on mobile */}
           <div className="sm:hidden flex items-center">
             <Sheet open={menuOpen} onOpenChange={setMenuOpen}>
@@ -45,7 +49,14 @@ const Navbar = () => {
                 <nav className="h-full flex flex-col justify-between py-4">
                   <div>
                     <div className="flex items-center justify-between px-5">
-                      <span className="font-semibold text-lg">Mon Portfolio</span>
+                      <Link
+                        to="/"
+                        className="font-semibold text-lg hover:underline"
+                        tabIndex={0}
+                        onClick={() => setMenuOpen(false)}
+                      >
+                        Mon Portfolio
+                      </Link>
                     </div>
                     <ul className="mt-6 flex flex-col gap-1">
                       {NAV_LINKS.map(({ labelKey, to, icon: Icon }) => (

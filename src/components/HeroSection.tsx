@@ -13,7 +13,7 @@ const HeroSection = () => {
       <div className="absolute right-4 bottom-[-80px] w-28 h-28 rounded-full bg-purple-400/15 blur-2xl z-0 animate-pulse hidden md:block"/>
       <div className="relative z-10 w-full max-w-xl mx-auto text-center space-y-2">
         <h1 className="text-2xl xs:text-3xl md:text-5xl font-extrabold mb-0 text-center bg-gradient-to-r from-primary to-fuchsia-700 via-indigo-600 text-transparent bg-clip-text leading-tight">
-          {t("hero.greeting")}
+          Jean Yves (LeZelote)
         </h1>
         <h2 className="text-primary text-base md:text-2xl font-semibold mb-1 mt-1 text-center">{t("hero.subtitle")}</h2>
         <div className="flex flex-col gap-1">
@@ -31,7 +31,7 @@ const HeroSection = () => {
           <li>{t("hero.item3")}</li>
           <li>{t("hero.item4")}</li>
         </ul>
-        {/* Bloc d’accroche principal ajouté juste avant les boutons */}
+        {/* Bloc d’accroche principal juste avant les boutons */}
         <div className="mt-4 mb-0 text-base sm:text-lg text-muted-foreground">
           {i18n.language === "fr"
             ? (
