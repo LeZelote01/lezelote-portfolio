@@ -19,20 +19,21 @@ const Index = () => {
       <Navbar />
       <main className="flex flex-col min-h-[90vh] justify-center items-center space-y-6 px-2">
         <HeroSection />
-        {/* Nouvelle section de présentation */}
+        {/* Nouvelle section de présentation améliorée */}
         <div className="max-w-2xl mx-auto text-center mt-2 mb-4 text-lg text-muted-foreground animate-fade-in">
           {i18n.language === "fr" ? (
             <>
-              Bienvenue sur mon portfolio professionnel. Vous y trouverez mes principales compétences en cybersécurité, mes projets open-source, ainsi que mon parcours et ma passion pour les défis technologiques.
+              Bienvenue sur mon portfolio professionnel. Vous y trouverez mes principales compétences en cybersécurité, mes projets open-source, ainsi que mon parcours et ma passion pour les défis technologiques.<br /><br />
+              Explorez les différents domaines où j'interviens, de l'audit de sécurité au développement d'outils Python, en passant par l'analyse de réseaux. N'hésitez pas à me contacter pour toute collaboration ou question&nbsp;!
             </>
           ) : (
             <>
-              Welcome to my professional portfolio. Here you’ll find my key skills in cybersecurity, open-source projects, my background, and my passion for technological challenges.
+              Welcome to my professional portfolio. Here you’ll find my key skills in cybersecurity, open-source projects, my background, and my passion for technological challenges.<br /><br />
+              Discover the various areas I work in, from security audits and Python tool development to in-depth network analysis. Feel free to contact me for any collaboration or inquiry!
             </>
           )}
         </div>
-        {/* Ajout de la carte À propos */}
-        <AboutCard />
+        {/* Carte À propos supprimée */}
         <SkillsGrid />
         <ProjectGallery />
       </main>
