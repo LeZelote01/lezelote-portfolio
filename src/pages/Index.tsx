@@ -1,14 +1,14 @@
+
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import HeroSection from "@/components/HeroSection";
 import SkillsGrid from "@/components/SkillsGrid";
 import ProjectGallery from "@/components/ProjectGallery";
 import { Helmet } from "react-helmet";
-import AboutCard from "@/components/AboutCard";
 import { useTranslation } from "react-i18next";
 
 const Index = () => {
-  const { t, i18n } = useTranslation();
+  const { i18n } = useTranslation();
   return (
     <>
       <Helmet>
@@ -18,13 +18,21 @@ const Index = () => {
       <Navbar />
       <main className="flex flex-col min-h-[90vh] justify-center items-center space-y-6 px-2">
         <HeroSection />
-        {/* Présentation simple allégée */}
+        {/* Présentation fusionnée et cohérente */}
         <div className="max-w-2xl mx-auto text-center mt-2 mb-4 text-lg text-muted-foreground animate-fade-in">
           {i18n.language === "fr"
-            ? <>Bienvenue sur mon portfolio professionnel. Vous y trouverez mes principales compétences en cybersécurité, mes projets open-source, ainsi que mon parcours et ma passion pour les défis technologiques.</>
-            : <>Welcome to my professional portfolio. Here you’ll find my key skills in cybersecurity, open-source projects, my background, and my passion for technological challenges.</>}
+            ? (
+              <>
+                Parcourez mes principales compétences en cybersécurité, mes réalisations open-source, ainsi que mon parcours orienté vers la sécurité offensive, le développement Python et l'automatisation. Explorez mes projets, découvrez mon approche de l'analyse réseau, et n'hésitez pas à me contacter pour toute collaboration ou question technique : passionné par les défis technologiques, je mets mon expertise au service de la sécurité numérique&nbsp;!
+              </>
+            )
+            : (
+              <>
+                Discover my key skills in cybersecurity, my open-source achievements, and my background focused on offensive security, Python development, and automation. Browse my projects, learn about my approach to network analysis, and feel free to reach out for any collaboration or technical question. Passionate about technological challenges, I put my expertise at the service of digital security!
+              </>
+            )
+          }
         </div>
-        {/* Carte À propos supprimée */}
         <SkillsGrid />
         <ProjectGallery />
       </main>

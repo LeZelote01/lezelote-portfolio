@@ -14,17 +14,11 @@ const HeroSection = () => {
       <h1 className="relative z-10 text-2xl xs:text-3xl md:text-5xl font-extrabold mb-2 text-center bg-gradient-to-r from-primary to-fuchsia-700 via-indigo-600 text-transparent bg-clip-text leading-tight">
         {t("hero.greeting")}
       </h1>
-      {/* Ajout phrase de présentation enrichie juste après le h1 */}
+      {/* Courte phrase d'accroche complémentaire */}
       <div className="relative z-10 max-w-xl mx-auto text-center text-base sm:text-lg text-muted-foreground">
-        {i18n.language === "fr" ? (
-          <>
-            Explorez les différents domaines où j'interviens, de l'audit de sécurité au développement d'outils Python, en passant par l'analyse de réseaux. N'hésitez pas à me contacter pour toute collaboration ou question&nbsp;!
-          </>
-        ) : (
-          <>
-            Discover the various areas I work in, from security audits and Python tool development to in-depth network analysis. Feel free to contact me for any collaboration or inquiry!
-          </>
-        )}
+        {i18n.language === "fr"
+          ? <>Bienvenue sur mon portfolio professionnel dédié à la cybersécurité, au développement Python, ainsi qu’à l’analyse réseau et à l’automatisation&nbsp;!</>
+          : <>Welcome to my professional portfolio focused on cybersecurity, Python development, network analysis, and automation!</>}
       </div>
       <h2 className="relative z-10 text-primary text-base md:text-2xl font-semibold mb-0 text-center">{t("hero.subtitle")}</h2>
       <p className="relative z-10 max-w-xs xs:max-w-sm sm:max-w-2xl text-base md:text-xl text-muted-foreground mb-1 text-center drop-shadow-lg">
