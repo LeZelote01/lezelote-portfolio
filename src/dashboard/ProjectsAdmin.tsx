@@ -1,11 +1,10 @@
-
 import { useProjectsAdmin } from "@/hooks/useProjectsAdmin";
 import { Plus, Edit, Trash2 } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import DashboardLayout from "./DashboardLayout";
 
-const EmptyProject = { title: "", description: "", image_url: "", link: "" };
+const EmptyProject = { title: "", description: "", image_url: "", link: "", github_url: "", demo_url: "" };
 
 const ProjectsAdmin = () => {
   const { data, isLoading, error, create, update, remove } = useProjectsAdmin();
@@ -14,7 +13,14 @@ const ProjectsAdmin = () => {
   const [showForm, setShowForm] = useState(false);
 
   const handleEdit = (project: any) => {
-    setForm({ title: project.title ?? "", description: project.description ?? "", image_url: project.image_url ?? "", link: project.link ?? "" });
+    setForm({
+      title: project.title ?? "",
+      description: project.description ?? "",
+      image_url: project.image_url ?? "",
+      link: project.link ?? "",
+      github_url: project.github_url ?? "",
+      demo_url: project.demo_url ?? ""
+    });
     setEditId(project.id);
     setShowForm(true);
   };
@@ -71,6 +77,18 @@ const ProjectsAdmin = () => {
               value={form.link}
               onChange={e => setForm(f => ({ ...f, link: e.target.value }))}
             />
+            <input
+              className="border rounded px-3 py-2 w-full"
+              placeholder="Lien GitHub (github_url)"
+              value={form.github_url}
+              onChange={e => setForm(f => ({ ...f, github_url: e.target.value }))}
+            />
+            <input
+              className="border rounded px-3 py-2 w-full"
+              placeholder="Lien Démo (demo_url)"
+              value={form.demo_url}
+              onChange={e => setForm(f => ({ ...f, demo_url: e.target.value }))}
+            />
             <div className="flex gap-4">
               <Button type="submit" variant="default" size="sm">
                 {editId ? <>Modifier</> : <>Créer</>}
@@ -87,6 +105,23 @@ const ProjectsAdmin = () => {
               <div>
                 <div className="font-medium">{p.title}</div>
                 <div className="text-xs text-gray-500">{p.description}</div>
+                <div className="flex gap-2 mt-1">
+                  {p.github_url && (
+                    <a href={p.github_url} target="_blank" rel="noopener noreferrer" className="text-xs text-blue-600 underline">
+                      GitHub
+                    </a>
+                  )}
+                  {p.demo_url && (
+                    <a href={p.demo_url} target="_blank" rel="noopener noreferrer" className="text-xs text-green-700 underline">
+                      Démo
+                    </a>
+                  )}
+                  {p.link && (
+                    <a href={p.link} target="_blank" rel="noopener noreferrer" className="text-xs text-fuchsia-700 underline">
+                      Site
+                    </a>
+                  )}
+                </div>
               </div>
               <div className="flex gap-2">
                 <Button size="icon" variant="outline" onClick={() => handleEdit(p)}><Edit /></Button>
