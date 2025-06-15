@@ -29,14 +29,7 @@ const HeroSection = () => {
             {t("hero.paragraph2")}
           </p>
         </div>
-        <ul className="flex flex-col justify-center items-center gap-1 text-sm md:text-base text-muted-foreground mt-2 text-center">
-          <li className="font-semibold">{t("hero.listTitle")}</li>
-          <li>{t("hero.item1")}</li>
-          <li>{t("hero.item2")}</li>
-          <li>{t("hero.item3")}</li>
-          <li>{t("hero.item4")}</li>
-        </ul>
-        {/* Bloc d’accroche principal juste avant les boutons */}
+        {/* Bloc d’accroche PRINCIPAL déplacé ici */}
         <div className="mt-4 mb-0 text-base sm:text-lg text-muted-foreground text-center">
           {i18n.language === "fr"
             ? (
@@ -50,6 +43,14 @@ const HeroSection = () => {
             )
           }
         </div>
+        {/* FIN déplacement du bloc */}
+        <ul className="flex flex-col justify-center items-center gap-1 text-sm md:text-base text-muted-foreground mt-2 text-center">
+          <li className="font-semibold">{t("hero.listTitle")}</li>
+          <li>{t("hero.item1")}</li>
+          <li>{t("hero.item2")}</li>
+          <li>{t("hero.item3")}</li>
+          <li>{t("hero.item4")}</li>
+        </ul>
       </div>
       <div className="relative z-10 flex flex-col xs:flex-row gap-3 xs:gap-4 mt-2 w-full justify-center items-center">
         <CVDownloadButton />
