@@ -1,3 +1,4 @@
+
 import { Link, useLocation } from "react-router-dom";
 import { FileText, Home, User, Image, Contact as ContactIcon, Menu } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -29,7 +30,7 @@ const Navbar = () => {
   return (
     <nav className="sticky top-0 z-50 w-full border-b border-border bg-background/95 dark:bg-background/90 transition-colors duration-500 shadow-lg backdrop-blur">
       <div className="max-w-7xl mx-auto flex flex-col gap-3 md:flex-row items-center justify-between px-2 sm:px-8 py-3">
-        {/* Logo & Title */}
+        {/* Row with logo & hamburger - justifier-between pour logo à gauche, menu à droite */}
         <div className="flex items-center justify-between w-full md:w-auto">
           <Link
             to="/"
@@ -45,8 +46,8 @@ const Navbar = () => {
           >
             Mon Portfolio
           </Link>
-          {/* Hamburger menu visible jusqu'à LG */}
-          <div className="lg:hidden flex items-center">
+          {/* Hamburger menu extrémité droite sur mobile ET tablette */}
+          <div className="flex-1 flex justify-end items-center lg:hidden ml-4">
             <Sheet open={menuOpen} onOpenChange={setMenuOpen}>
               <SheetTrigger aria-label="Ouvrir le menu de navigation" className="p-2 rounded-md hover:bg-white/30 dark:hover:bg-fuchsia-900/30 transition">
                 <Menu size={28} />
@@ -57,9 +58,10 @@ const Navbar = () => {
                     <div className="flex items-center justify-between px-5">
                       <Link
                         to="/"
-                        className="font-semibold text-lg hover:underline"
+                        className="font-semibold text-lg"
                         tabIndex={0}
                         onClick={() => setMenuOpen(false)}
+                        style={{ textDecoration: "none" }}
                       >
                         Mon Portfolio
                       </Link>

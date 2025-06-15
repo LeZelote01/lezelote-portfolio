@@ -12,12 +12,20 @@ const HeroSection = () => {
       <div className="absolute top-[-80px] left-4 w-28 h-28 rounded-full bg-indigo-400/20 blur-2xl z-0 animate-pulse hidden md:block"/>
       <div className="absolute right-4 bottom-[-80px] w-28 h-28 rounded-full bg-purple-400/15 blur-2xl z-0 animate-pulse hidden md:block"/>
       <div className="relative z-10 w-full max-w-xl mx-auto space-y-2 text-center">
+        {/* PHOTO DE PROFIL */}
+        <div className="flex justify-center mb-2">
+          <img
+            src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=facearea&w=200&h=200&facepad=3"
+            alt="Jean Yves - portrait"
+            className="w-32 h-32 rounded-full object-cover border-4 border-fuchsia-300 shadow-lg bg-white dark:bg-fuchsia-950"
+            draggable={false}
+          />
+        </div>
         <h1 className="text-2xl xs:text-3xl md:text-5xl font-extrabold mb-0 bg-gradient-to-r from-primary to-fuchsia-700 via-indigo-600 text-transparent bg-clip-text leading-tight text-center">
           {i18n.language === "fr"
             ? "Bonjour, je suis Jean Yves (LeZelote)"
             : "Hello, I'm Jean Yves (LeZelote)"}
         </h1>
-        {/* Supprimé le div du nom */}
         <h2 className="text-primary text-base md:text-2xl font-semibold mb-1 mt-1 text-center">
           {t("hero.subtitle")}
         </h2>
