@@ -1,73 +1,84 @@
-# Welcome to your Lovable project
 
-## Project info
+# Sleek Pro Portfolio Hub
 
-**URL**: https://lovable.dev/projects/ccbec7fa-1331-4132-8692-1779c9a7da23
+[Projet généré avec Lovable](https://lovable.dev/projects/ccbec7fa-1331-4132-8692-1779c9a7da23)
 
-## How can I edit this code?
+## 🚀 Aperçu
 
-There are several ways of editing your application.
+Portfolio professionnel sous Vite + React + Supabase + shadcn/ui + Tailwind CSS.
 
-**Use Lovable**
+---
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/ccbec7fa-1331-4132-8692-1779c9a7da23) and start prompting.
-
-Changes made via Lovable will be committed automatically to this repo.
-
-**Use your preferred IDE**
-
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
+## ⚡️ Installation Locale
 
 ```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
+git clone <URL_DU_DEPOT_GITHUB>
+cd <nom_du_dossier>
+npm install
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+## 🔐 Variables d'environnement à définir
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+Ce projet nécessite la configuration des variables d’environnement suivantes, à définir sur Render (ou dans un fichier `.env.local` pour usage local) :
 
-**Use GitHub Codespaces**
+| Variable                    | Exemple                                                                                              | Description                                                        |
+|-----------------------------|------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------|
+| SUPABASE_URL                | https://vujoahxiytoxxkrqfnzb.supabase.co                                                             | URL de votre projet Supabase                                       |
+| SUPABASE_ANON_KEY           | eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdX... (clé complète fournie par Supabase)           | Clé publique d’accès anonyme Supabase (Project Settings > API)     |
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+*NB : Pour Lovable, ces variables sont déjà intégrées par défaut dans les fichiers sources ; sur Render il faut les ajouter à la main !*
 
-## What technologies are used for this project?
+---
 
-This project is built with:
+## 🛫 Déploiement sur Render
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+1. **Pousser votre code sur GitHub**
+2. **Créer un nouveau Web Service ou Static Site sur [Render](https://render.com/)**
+3. **Relier votre repo GitHub**
 
-## How can I deploy this project?
+### Configuration Render :
 
-Simply open [Lovable](https://lovable.dev/projects/ccbec7fa-1331-4132-8692-1779c9a7da23) and click on Share -> Publish.
+Pour un web service :
 
-## Can I connect a custom domain to my Lovable project?
+- **Build Command**: `npm install && npm run build`
+- **Start Command**: `npm run preview`
+- **Root Directory**: _(laissez vide si le projet est à la racine)_
 
-Yes, you can!
+Pour un static site :
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+- **Build Command**: `npm install && npm run build`
+- **Publish Directory**: `dist`
+- **Start Command**: _(laisser vide)_
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+### Variables d'environnement Render
+
+Ajouter dans "Environment" de Render :
+
+- `SUPABASE_URL` = `https://vujoahxiytoxxkrqfnzb.supabase.co`
+- `SUPABASE_ANON_KEY` = 
+  ```
+  eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZ1am9haHhpeXRveHhrcnFmbnpiIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDk5MTg1NDMsImV4cCI6MjA2NTQ5NDU0M30.74zH1jWzkf5jI5Go6LcGvkhp9lmyee_JoEOAXlhJzlg
+  ```
+
+> **Astuce** : changez la clé si vous utilisez votre propre instance Supabase !
+
+---
+
+## 🌍 Lancer l’application
+
+Après déploiement, Render indique l’URL publique de votre site. Tout doit fonctionner immédiatement (CV, authentification admin…).
+
+---
+
+### 📄 Gestion des fichiers CV (Supabase Storage)
+
+- Le bucket **cv** doit exister sur Supabase : [Documentation Storage](https://supabase.com/docs/guides/storage)
+- Vérifiez que le "Bucket" est bien public pour permettre les accès et téléchargements.
+
+---
+
+## 📝 Licence
+
+Ce projet est diffusé sous licence MIT. Voir le fichier [`LICENSE`](./LICENSE).
+
