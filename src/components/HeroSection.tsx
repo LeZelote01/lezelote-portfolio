@@ -11,14 +11,23 @@ const HeroSection = () => {
     <section className="relative w-full min-h-[60vh] flex flex-col items-center justify-center gap-8 py-8 sm:py-20 bg-gradient-to-br from-primary/10 via-purple-100 to-indigo-100 dark:from-primary/30 dark:via-primary/10 dark:to-background animate-fade-in px-2 sm:px-0">
       <div className="absolute top-[-80px] left-4 w-28 h-28 rounded-full bg-indigo-400/20 blur-2xl z-0 animate-pulse hidden md:block"/>
       <div className="absolute right-4 bottom-[-80px] w-28 h-28 rounded-full bg-purple-400/15 blur-2xl z-0 animate-pulse hidden md:block"/>
-      <h1 className="relative z-10 text-2xl xs:text-3xl md:text-5xl font-extrabold mb-2 text-center bg-gradient-to-r from-primary to-fuchsia-700 via-indigo-600 text-transparent bg-clip-text leading-tight">
-        {t("hero.greeting")}
-      </h1>
-      {/* Courte phrase d'accroche complémentaire */}
-      <div className="relative z-10 max-w-xl mx-auto text-center text-base sm:text-lg text-muted-foreground">
-        {i18n.language === "fr"
-          ? <>Bienvenue sur mon portfolio professionnel dédié à la cybersécurité, au développement Python, ainsi qu’à l’analyse réseau et à l’automatisation&nbsp;!</>
-          : <>Welcome to my professional portfolio focused on cybersecurity, Python development, network analysis, and automation!</>}
+      <div className="relative z-10 w-full max-w-xl mx-auto text-center space-y-2">
+        <h1 className="text-2xl xs:text-3xl md:text-5xl font-extrabold mb-0 text-center bg-gradient-to-r from-primary to-fuchsia-700 via-indigo-600 text-transparent bg-clip-text leading-tight">
+          {t("hero.greeting")}
+        </h1>
+        <div className="text-base sm:text-lg text-muted-foreground">
+          {i18n.language === "fr"
+            ? (
+              <>
+                Parcourez mes principales compétences en cybersécurité, mes réalisations open-source, ainsi que mon parcours orienté vers la sécurité offensive, le développement Python et l'automatisation. Explorez mes projets, découvrez mon approche de l'analyse réseau, et n'hésitez pas à me contacter pour toute collaboration ou question technique : passionné par les défis technologiques, je mets mon expertise au service de la sécurité numérique !
+              </>
+            ) : (
+              <>
+                Discover my key skills in cybersecurity, my open-source achievements, and my background focused on offensive security, Python development, and automation. Browse my projects, learn about my approach to network analysis, and feel free to reach out for any collaboration or technical question. Passionate about technological challenges, I put my expertise at the service of digital security!
+              </>
+            )
+          }
+        </div>
       </div>
       <h2 className="relative z-10 text-primary text-base md:text-2xl font-semibold mb-0 text-center">{t("hero.subtitle")}</h2>
       <p className="relative z-10 max-w-xs xs:max-w-sm sm:max-w-2xl text-base md:text-xl text-muted-foreground mb-1 text-center drop-shadow-lg">
