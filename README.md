@@ -1,4 +1,3 @@
-
 # Sleek Pro Portfolio Hub
 
 [Projet généré avec Lovable](https://lovable.dev/projects/ccbec7fa-1331-4132-8692-1779c9a7da23)
@@ -18,24 +17,26 @@ npm install
 npm run dev
 ```
 
-## 🔐 Variables d'environnement à définir
+## 🔐 Configuration des variables d'environnement
 
-Ce projet nécessite la configuration des variables d’environnement suivantes, à définir sur Render (ou dans un fichier `.env.local` pour usage local) :
+Avant de lancer le projet (en local ou sur Render), il faut définir quelques variables d'environnement.
 
-| Variable                    | Exemple                                                                                              | Description                                                        |
-|-----------------------------|------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------|
-| SUPABASE_URL                | https://vujoahxiytoxxkrqfnzb.supabase.co                                                             | URL de votre projet Supabase                                       |
-| SUPABASE_ANON_KEY           | eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdX... (clé complète fournie par Supabase)           | Clé publique d’accès anonyme Supabase (Project Settings > API)     |
+### Exemple pour un fichier `.env.local` (recommandé pour le local) :
 
-*NB : Pour Lovable, ces variables sont déjà intégrées par défaut dans les fichiers sources ; sur Render il faut les ajouter à la main !*
+Crée un fichier `.env.local` à la racine du projet avec ce contenu :
+```
+SUPABASE_URL=ton_url_supabase
+SUPABASE_ANON_KEY=ta_cle_anon_supabase
+```
+> **Attention** : Ne partage JAMAIS tes vraies clés ou URLs publiques. Ce fichier ne doit pas être versionné.
 
 ---
 
 ## 🛫 Déploiement sur Render
 
-1. **Pousser votre code sur GitHub**
+1. **Pousser ton code sur GitHub**
 2. **Créer un nouveau Web Service ou Static Site sur [Render](https://render.com/)**
-3. **Relier votre repo GitHub**
+3. **Relier ton repo GitHub**
 
 ### Configuration Render :
 
@@ -43,7 +44,7 @@ Pour un web service :
 
 - **Build Command**: `npm install && npm run build`
 - **Start Command**: `npm run preview`
-- **Root Directory**: _(laissez vide si le projet est à la racine)_
+- **Root Directory**: _(laisse vide si le projet est à la racine)_
 
 Pour un static site :
 
@@ -53,32 +54,27 @@ Pour un static site :
 
 ### Variables d'environnement Render
 
-Ajouter dans "Environment" de Render :
+Ajoute dans l'onglet "Environment" de Render :
+- `SUPABASE_URL` = `Insère ici l'URL de ton projet Supabase`
+- `SUPABASE_ANON_KEY` = `Insère ici ta clé anonyme Supabase`
 
-- `SUPABASE_URL` = `https://vujoahxiytoxxkrqfnzb.supabase.co`
-- `SUPABASE_ANON_KEY` = 
-  ```
-  eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZ1am9haHhpeXRveHhrcnFmbnpiIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDk5MTg1NDMsImV4cCI6MjA2NTQ5NDU0M30.74zH1jWzkf5jI5Go6LcGvkhp9lmyee_JoEOAXlhJzlg
-  ```
-
-> **Astuce** : changez la clé si vous utilisez votre propre instance Supabase !
+> **Astuce** : Ne remplis jamais ces champs avec les exemples du README ! Utilise toujours tes vraies informations Supabase, récupérables dans Supabase > Project Settings > API.
 
 ---
 
 ## 🌍 Lancer l’application
 
-Après déploiement, Render indique l’URL publique de votre site. Tout doit fonctionner immédiatement (CV, authentification admin…).
+Après déploiement, Render indique l’URL publique de ton site.
 
 ---
 
 ### 📄 Gestion des fichiers CV (Supabase Storage)
 
 - Le bucket **cv** doit exister sur Supabase : [Documentation Storage](https://supabase.com/docs/guides/storage)
-- Vérifiez que le "Bucket" est bien public pour permettre les accès et téléchargements.
+- Vérifie que le bucket est bien public.
 
 ---
 
 ## 📝 Licence
 
 Ce projet est diffusé sous licence MIT. Voir le fichier [`LICENSE`](./LICENSE).
-
