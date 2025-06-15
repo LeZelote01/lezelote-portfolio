@@ -19,5 +19,30 @@
     "invalid_email": "Email invalide.",
     "invalid_name": "Nom requis (2+ caractères).",
     "invalid_message": "Le message doit faire 10 caractères minimum."
+  },
+  "hero": {
+    "greeting": "Bonjour, je suis Jean Yves (alias LeZelote)",
+    "subtitle": "Spécialiste en cybersécurité & programmation réseau/python",
+    "paragraph1": "Passionné par le pentest, la sécurité offensive et la programmation, j’aide entreprises et particuliers à identifier, comprendre et combler les failles de sécurité.",
+    "paragraph2": "Je développe aussi des outils sur-mesure en Python pour automatiser les tâches de cybersécurité et de gestion réseau.",
+    "listTitle": "Ce que je propose :",
+    "item1": "🌐 Audits, tests d’intrusion & analyses de sécurité",
+    "item2": "🐍 Développement Python sur-mesure, automations",
+    "item3": "🔒 Conseil, sensibilisation à la cybersécurité",
+    "item4": "📡 Expertise réseaux et protocoles",
+    "cta": "Découvre mes compétences et mes projets !",
+    "cta_projects": "Voir mes projets"
+  },
+  "about": {
+    "title": "À propos de moi",
+    "intro": "Avec plusieurs années d’expérience dans la cybersécurité, je m’appelle Jean Yves (LeZelote) et j’explore tous les aspects du hacking éthique et du développement réseau.",
+    "main": "Autodidacte et constamment en veille, j’aime analyser en profondeur la sécurité des systèmes et automatiser la détection de vulnérabilités. Ma spécialité : le pentest, la programmation python et la sécurisation des infrastructures !",
+    "listTitle": "Mes activités principales :",
+    "item1": "• Audits de sécurité (web, réseau, IoT)",
+    "item2": "• Tests d’intrusion (pentest) & rapports détaillés",
+    "item3": "• Développement d’outils Python pour la cybersécurité",
+    "item4": "• Ateliers & sensibilisation aux enjeux cyber",
+    "item5": "• Veille sur les nouvelles vulnérabilités & menaces",
+    "conclusion": "Mon objectif : partager mes connaissances, améliorer continuellement mes compétences, et aider à bâtir un monde numérique plus sûr."
   }
 }

@@ -19,5 +19,30 @@
     "invalid_email": "Invalid email.",
     "invalid_name": "Name required (2+ characters).",
     "invalid_message": "Message must be at least 10 characters."
+  },
+  "hero": {
+    "greeting": "Hello, I'm Jean Yves (aka LeZelote)",
+    "subtitle": "Cybersecurity & Network/Python Programming Specialist",
+    "paragraph1": "Passionate about pentesting, offensive security and programming, I help companies and individuals identify, understand, and fix security flaws.",
+    "paragraph2": "I also create custom Python tools to automate cybersecurity and networking tasks.",
+    "listTitle": "How I can help:",
+    "item1": "🌐 Audits, penetration testing & security analysis",
+    "item2": "🐍 Custom Python development & automation",
+    "item3": "🔒 Cybersecurity consulting & awareness",
+    "item4": "📡 Advanced network & protocol expertise",
+    "cta": "Discover my skills and projects!",
+    "cta_projects": "See my projects"
+  },
+  "about": {
+    "title": "About me",
+    "intro": "With several years’ experience in cybersecurity, my name is Jean Yves (LeZelote). I explore all aspects of ethical hacking and network development.",
+    "main": "A self-learner always on the lookout for new threats, I love to thoroughly analyze systems' security and automate vulnerability detection. My specialties: pentesting, Python development, and infrastructure security!",
+    "listTitle": "Main activities:",
+    "item1": "• Security audits (web, network, IoT)",
+    "item2": "• Penetration tests & detailed reporting",
+    "item3": "• Developing Python tools for cyber",
+    "item4": "• Workshops & cybersecurity awareness",
+    "item5": "• Keeping up with new vulnerabilities & threats",
+    "conclusion": "My goal: to share knowledge, constantly improve my skills, and help build a safer digital world."
   }
 }
