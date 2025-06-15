@@ -6,8 +6,27 @@ import { Input } from "./ui/input";
 import { Textarea } from "./ui/textarea";
 import { Button } from "./ui/button";
 import { supabase } from "@/integrations/supabase/client";
+import { Linkedin, Twitter, Instagram } from "lucide-react";
 
 const emailRegex = /^[\w-.]+@([\w-]+\.)+[\w-]{2,}$/i;
+
+const SOCIAL_LINKS = [
+  {
+    name: "LinkedIn",
+    icon: Linkedin,
+    url: "https://linkedin.com/in/votre-profil", // Remplace par ton vrai lien LinkedIn
+  },
+  {
+    name: "Twitter",
+    icon: Twitter,
+    url: "https://twitter.com/votreprofil", // Remplace par ton vrai lien Twitter
+  },
+  {
+    name: "Instagram",
+    icon: Instagram,
+    url: "https://instagram.com/votreprofil", // Remplace par ton vrai lien Instagram
+  }
+];
 
 const ContactForm = () => {
   const [fields, setFields] = useState({ name: "", email: "", message: "" });
@@ -112,8 +131,29 @@ const ContactForm = () => {
       >
         {loading ? t("contact.sending") : t("contact.submit")}
       </Button>
+      {/* Réseaux sociaux sous le formulaire */}
+      <div className="pt-7 border-t border-border mt-6 flex flex-col items-center">
+        <span className="text-sm font-medium text-muted-foreground mb-3">
+          {t("contact.socials") ?? "Retrouvez-moi sur les réseaux sociaux"}
+        </span>
+        <div className="flex flex-row gap-5">
+          {SOCIAL_LINKS.map(({ name, icon: Icon, url }) => (
+            <a
+              key={name}
+              href={url}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={name}
+              className="rounded-full bg-background border border-border p-2 hover:bg-primary/10 dark:hover:bg-primary/40 transition-transform hover:-translate-y-1"
+            >
+              <Icon size={28} />
+            </a>
+          ))}
+        </div>
+      </div>
     </form>
   );
 };
 
 export default ContactForm;
+
