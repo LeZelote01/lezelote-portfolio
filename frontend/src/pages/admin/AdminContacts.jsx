@@ -8,7 +8,7 @@ import { useTheme } from '../../context/ThemeContext';
 import { 
   Mail, User, Calendar, MessageSquare, ExternalLink, 
   ArrowLeft, RefreshCw, Trash2, Eye, CheckCircle, X, 
-  MoreVertical, FileText, Reply, MarkAsUnread
+  MoreVertical, FileText, Reply, MailOpen
 } from 'lucide-react';
 
 const AdminContacts = () => {
