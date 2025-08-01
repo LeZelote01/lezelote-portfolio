@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <defs>
+    <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#4ade80;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#06b6d4;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#10b981;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="64" height="64" rx="12" fill="url(#logoGradient)" />
+  
+  <!-- JY Text -->
+  <text x="32" y="42" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#1f2937" text-anchor="middle">JY</text>
+  
+  <!-- Security symbols as small icons -->
+  <circle cx="16" cy="16" r="3" fill="#1f2937" opacity="0.3"/>
+  <circle cx="48" cy="16" r="3" fill="#1f2937" opacity="0.3"/>
+  <circle cx="16" cy="48" r="3" fill="#1f2937" opacity="0.3"/>
+  <circle cx="48" cy="48" r="3" fill="#1f2937" opacity="0.3"/>
+</svg>

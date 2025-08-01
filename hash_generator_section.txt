@@ -1,0 +1,81 @@
+{/* Hash Generator */}
+            {activeTab === 'hash' && (
+              <div className="bg-gray-800/50 backdrop-blur-sm border border-gray-700 rounded-2xl p-8">
+                <h2 className="text-3xl font-bold text-white mb-6 flex items-center gap-3">
+                  <Hash className="text-green-400" />
+                  {t('hashGeneratorTitle')}
+                </h2>
+                
+                <div className="space-y-6">
+                  <div>
+                    <label className="block text-sm font-medium text-gray-300 mb-2">
+                      {t('enterTextToHash')}
+                    </label>
+                    <div className="space-y-4">
+                      <textarea
+                        value={hashInput}
+                        onChange={(e) => setHashInput(e.target.value)}
+                        placeholder={t('enterTextPlaceholder')}
+                        rows={4}
+                        className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-green-400 resize-none"
+                      />
+                      
+                      <div className="flex gap-4">
+                        <button
+                          onClick={generateHashes}
+                          className="bg-gradient-to-r from-green-400 to-cyan-400 text-gray-900 px-6 py-3 rounded-lg font-semibold hover:from-green-500 hover:to-cyan-500 transition-all duration-200 flex items-center gap-2"
+                        >
+                          <Play size={16} />
+                          {t('generateHashes')}
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+
+                  {Object.keys(hashResults).length > 0 && (
+                    <div className="bg-gray-900/50 border border-gray-700 rounded-lg p-6">
+                      <h3 className="text-lg font-semibold text-white mb-4">{t('hashResults')}</h3>
+                      <div className="space-y-4">
+                        {Object.entries(hashResults).map(([algorithm, hash]) => (
+                          <div key={algorithm} className="flex items-center justify-between p-3 bg-gray-800 rounded-lg">
+                            <div className="flex-1">
+                              <div className="text-green-400 font-semibold text-sm uppercase">{algorithm}</div>
+                              <div className="text-gray-300 font-mono text-sm break-all">{hash}</div>
+                            </div>
+                            <button
+                              onClick={() => copyToClipboard(hash)}
+                              className="ml-4 text-gray-400 hover:text-white transition-colors flex items-center gap-2"
+                            >
+                              {copiedText === hash ? 
+                                <><CheckCircle size={16} className="text-green-400" /> {t('copied')}</> : 
+                                <><Copy size={16} /> {t('copyHash')}</>
+                              }
+                            </button>
+                          </div>
+                        ))}
+                      </div>
+                      
+                      {/* Save Results Button */}
+                      <div className="flex justify-center pt-6">
+                        <button
+                          onClick={saveHashResults}
+                          className="flex items-center gap-2 px-6 py-3 bg-green-600 hover:bg-green-500 text-white rounded-lg font-medium transition-all duration-200"
+                        >
+                          {copiedText === 'saved' ? (
+                            <>
+                              <CheckCircle size={16} />
+                              {t('saved')}
+                            </>
+                          ) : (
+                            <>
+                              <Save size={16} />
+                              {t('saveHashResults')}
+                            </>
+                          )}
+                        </button>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              </div>
+            )}

@@ -1,0 +1,80 @@
+<svg width="400" height="400" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1f2937;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#111827;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="accent" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#10b981;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#06b6d4;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="suit" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#374151;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1f2937;stop-opacity:1" />
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge> 
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="400" height="400" fill="url(#bg)"/>
+  
+  <!-- Subtle grid pattern -->
+  <defs>
+    <pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse">
+      <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#374151" stroke-width="0.5" opacity="0.1"/>
+    </pattern>
+  </defs>
+  <rect width="400" height="400" fill="url(#grid)" />
+  
+  <!-- Suit/Jacket -->
+  <path d="M 120 280 L 120 400 L 280 400 L 280 280 C 280 260 260 250 240 250 L 200 250 L 160 250 C 140 250 120 260 120 280 Z" fill="url(#suit)"/>
+  
+  <!-- Shirt -->
+  <path d="M 160 250 L 240 250 L 240 400 L 160 400 Z" fill="#f8fafc"/>
+  
+  <!-- Tie -->
+  <path d="M 190 250 L 210 250 L 215 280 L 205 340 L 195 340 L 185 280 Z" fill="url(#accent)"/>
+  
+  <!-- Head -->
+  <circle cx="200" cy="160" r="65" fill="#fbbf24" opacity="0.9"/>
+  
+  <!-- Hair -->
+  <path d="M 140 140 Q 140 100 200 100 Q 260 100 260 140 Q 260 120 240 130 Q 220 110 200 115 Q 180 110 160 130 Q 140 120 140 140" fill="#374151"/>
+  
+  <!-- Eyes -->
+  <ellipse cx="180" cy="150" rx="8" ry="5" fill="#1f2937"/>
+  <ellipse cx="220" cy="150" rx="8" ry="5" fill="#1f2937"/>
+  <circle cx="182" cy="148" r="2" fill="#ffffff"/>
+  <circle cx="222" cy="148" r="2" fill="#ffffff"/>
+  
+  <!-- Nose -->
+  <path d="M 200 165 L 195 175 L 200 178 L 205 175 Z" fill="#f59e0b" opacity="0.6"/>
+  
+  <!-- Mouth -->
+  <path d="M 185 185 Q 200 195 215 185" stroke="#374151" stroke-width="2" fill="none" stroke-linecap="round"/>
+  
+  <!-- Collar -->
+  <path d="M 160 250 L 180 240 L 200 250 L 220 240 L 240 250" stroke="#d1d5db" stroke-width="2" fill="none"/>
+  
+  <!-- Tech elements -->
+  <circle cx="320" cy="80" r="3" fill="url(#accent)" opacity="0.7">
+    <animate attributeName="opacity" values="0.7;1;0.7" dur="2s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="80" cy="320" r="2" fill="url(#accent)" opacity="0.5">
+    <animate attributeName="opacity" values="0.5;0.9;0.5" dur="3s" repeatCount="indefinite"/>
+  </circle>
+  
+  <!-- Code symbols -->
+  <text x="320" y="320" font-family="monospace" font-size="16" fill="url(#accent)" opacity="0.6" filter="url(#glow)">&lt;/&gt;</text>
+  <text x="60" y="80" font-family="monospace" font-size="14" fill="url(#accent)" opacity="0.4">{ }</text>
+  
+  <!-- Security shield -->
+  <path d="M 350 150 L 350 130 Q 350 120 360 120 Q 370 120 370 130 L 370 150 Q 370 160 360 165 Q 350 160 350 150 Z" fill="url(#accent)" opacity="0.6"/>
+  <circle cx="360" cy="145" r="3" fill="#1f2937"/>
+</svg>

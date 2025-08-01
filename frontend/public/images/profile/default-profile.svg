@@ -1,0 +1,13 @@
+<svg width="400" height="400" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#10b981;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#06b6d4;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <rect width="400" height="400" fill="#1f2937"/>
+  <circle cx="200" cy="160" r="70" fill="url(#gradient)"/>
+  <path d="M200 250 C170 250 140 260 120 280 L120 400 L280 400 L280 280 C260 260 230 250 200 250 Z" fill="url(#gradient)"/>
+  <text x="200" y="340" font-family="Arial, sans-serif" font-size="24" font-weight="bold" text-anchor="middle" fill="#ffffff">Jean Yves</text>
+  <text x="200" y="365" font-family="Arial, sans-serif" font-size="16" text-anchor="middle" fill="#9ca3af">Cybersécurité & Python</text>
+</svg>
