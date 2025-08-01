@@ -272,21 +272,36 @@ const AdminContacts = () => {
                       </CardDescription>
                     </div>
                     <div className="flex gap-2">
+                      <Button
+                        size="sm"
+                        variant="outline"
+                        onClick={() => openContactModal(contact)}
+                        className="flex items-center gap-2"
+                      >
+                        <FileText className="h-4 w-4" />
+                        Voir détails
+                      </Button>
+                      
                       {contact.status === 'new' && (
                         <Button
                           size="sm"
                           variant="outline"
                           onClick={() => updateContactStatus(contact.id, 'read')}
+                          disabled={actionLoading}
                         >
-                          Marquer comme lu
+                          <Eye className="h-4 w-4 mr-1" />
+                          Marquer lu
                         </Button>
                       )}
+                      
                       {contact.status === 'read' && (
                         <Button
                           size="sm"
                           onClick={() => updateContactStatus(contact.id, 'replied')}
+                          disabled={actionLoading}
                         >
-                          Marquer comme répondu
+                          <CheckCircle className="h-4 w-4 mr-1" />
+                          Marquer répondu
                         </Button>
                       )}
                     </div>
@@ -305,7 +320,7 @@ const AdminContacts = () => {
                       )}
                     </div>
                     <div className="bg-gray-50 dark:bg-gray-800 p-4 rounded-lg">
-                      <p className="text-gray-700 dark:text-gray-300 whitespace-pre-wrap">
+                      <p className="text-gray-700 dark:text-gray-300 whitespace-pre-wrap line-clamp-3">
                         {contact.message}
                       </p>
                     </div>
@@ -316,7 +331,7 @@ const AdminContacts = () => {
                         onClick={() => window.open(`mailto:${contact.email}?subject=Re: ${contact.subject}`, '_blank')}
                         className="flex items-center gap-2"
                       >
-                        <ExternalLink className="h-4 w-4" />
+                        <Reply className="h-4 w-4" />
                         Répondre par email
                       </Button>
                     </div>
@@ -326,6 +341,117 @@ const AdminContacts = () => {
             ))
           )}
         </div>
+
+        {/* Modal pour vue détaillée */}
+        {showModal && selectedContact && (
+          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+            <div className="bg-white dark:bg-gray-800 rounded-lg max-w-4xl w-full max-h-[90vh] overflow-y-auto">
+              <div className="p-6">
+                {/* Header du modal */}
+                <div className="flex items-start justify-between mb-6">
+                  <div>
+                    <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-2 flex items-center gap-3">
+                      <User className="h-6 w-6 text-blue-600" />
+                      {selectedContact.name}
+                      {getStatusBadge(selectedContact.status)}
+                    </h2>
+                    <div className="flex items-center gap-4 text-gray-600 dark:text-gray-400">
+                      <span className="flex items-center gap-1">
+                        <Mail className="h-4 w-4" />
+                        {selectedContact.email}
+                      </span>
+                      <span className="flex items-center gap-1">
+                        <Calendar className="h-4 w-4" />
+                        {formatDate(selectedContact.submitted_at)}
+                      </span>
+                    </div>
+                  </div>
+                  <Button variant="outline" size="sm" onClick={closeModal}>
+                    <X className="h-4 w-4" />
+                  </Button>
+                </div>
+
+                {/* Contenu du message */}
+                <div className="space-y-6">
+                  <div>
+                    <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+                      Sujet: {selectedContact.subject}
+                    </h3>
+                    {selectedContact.service && (
+                      <p className="text-gray-600 dark:text-gray-400 mb-4">
+                        Service d'intérêt: <span className="font-medium">{getServiceLabel(selectedContact.service)}</span>
+                      </p>
+                    )}
+                  </div>
+
+                  <div className="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg">
+                    <h4 className="font-semibold text-gray-900 dark:text-white mb-3">Message :</h4>
+                    <p className="text-gray-700 dark:text-gray-300 whitespace-pre-wrap leading-relaxed">
+                      {selectedContact.message}
+                    </p>
+                  </div>
+
+                  {/* Actions */}
+                  <div className="flex items-center justify-between pt-4 border-t border-gray-200 dark:border-gray-700">
+                    <div className="flex gap-3">
+                      <Button
+                        onClick={() => window.open(`mailto:${selectedContact.email}?subject=Re: ${selectedContact.subject}`, '_blank')}
+                        className="flex items-center gap-2"
+                      >
+                        <Reply className="h-4 w-4" />
+                        Répondre par email
+                      </Button>
+                    </div>
+
+                    <div className="flex gap-2">
+                      {selectedContact.status === 'new' && (
+                        <Button
+                          variant="outline"
+                          onClick={() => updateContactStatus(selectedContact.id, 'read')}
+                          disabled={actionLoading}
+                        >
+                          <Eye className="h-4 w-4 mr-2" />
+                          Marquer comme lu
+                        </Button>
+                      )}
+                      
+                      {selectedContact.status === 'read' && (
+                        <>
+                          <Button
+                            variant="outline"
+                            onClick={() => updateContactStatus(selectedContact.id, 'new')}
+                            disabled={actionLoading}
+                          >
+                            <MarkAsUnread className="h-4 w-4 mr-2" />
+                            Marquer non lu
+                          </Button>
+                          <Button
+                            onClick={() => updateContactStatus(selectedContact.id, 'replied')}
+                            disabled={actionLoading}
+                          >
+                            <CheckCircle className="h-4 w-4 mr-2" />
+                            Marquer comme répondu
+                          </Button>
+                        </>
+                      )}
+                      
+                      {selectedContact.status === 'replied' && (
+                        <Button
+                          variant="outline"
+                          onClick={() => updateContactStatus(selectedContact.id, 'read')}
+                          disabled={actionLoading}
+                        >
+                          <MarkAsUnread className="h-4 w-4 mr-2" />
+                          Marquer comme lu
+                        </Button>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
