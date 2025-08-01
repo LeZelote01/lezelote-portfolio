@@ -26,7 +26,7 @@ const Header = () => {
   ];
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-gray-900/95 backdrop-blur-md border-b border-gray-800">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-white/95 dark:bg-gray-900/95 backdrop-blur-md border-b border-gray-200 dark:border-gray-800">
       <div className="container mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
@@ -40,15 +40,15 @@ const Header = () => {
               <Link
                 key={index}
                 to={item.href}
-                className={`text-sm font-medium transition-colors duration-200 hover:text-green-400 relative ${
+                className={`text-sm font-medium transition-colors duration-200 hover:text-green-500 relative ${
                   isActive(item.href) 
-                    ? 'text-green-400' 
-                    : 'text-gray-300'
+                    ? 'text-green-500' 
+                    : 'text-gray-700 dark:text-gray-300'
                 }`}
               >
                 {item.name}
                 {isActive(item.href) && (
-                  <div className="absolute -bottom-1 left-0 w-full h-0.5 bg-green-400 rounded-full"></div>
+                  <div className="absolute -bottom-1 left-0 w-full h-0.5 bg-green-500 rounded-full"></div>
                 )}
               </Link>
             ))}
@@ -59,7 +59,7 @@ const Header = () => {
             {/* Theme Toggle */}
             <button
               onClick={toggleTheme}
-              className="p-2 rounded-lg hover:bg-gray-800 transition-colors text-gray-300 hover:text-white"
+              className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white"
               title={isDark ? "Mode clair" : "Mode sombre"}
             >
               {isDark ? <Sun size={20} /> : <Moon size={20} />}
@@ -68,7 +68,7 @@ const Header = () => {
             {/* Language Toggle */}
             <button
               onClick={toggleLanguage}
-              className="flex items-center gap-1 p-2 rounded-lg hover:bg-gray-800 transition-colors text-gray-300 hover:text-white"
+              className="flex items-center gap-1 p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white"
               title={isFrench ? "Switch to English" : "Passer en français"}
             >
               <Globe size={16} />
@@ -87,7 +87,7 @@ const Header = () => {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="md:hidden p-2 rounded-lg hover:bg-gray-800 transition-colors"
+            className="md:hidden p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-gray-600 dark:text-gray-300"
           >
             {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
@@ -95,17 +95,17 @@ const Header = () => {
 
         {/* Mobile Menu */}
         {isMenuOpen && (
-          <div className="md:hidden mt-4 py-4 border-t border-gray-800">
+          <div className="md:hidden mt-4 py-4 border-t border-gray-200 dark:border-gray-800">
             <nav className="flex flex-col space-y-4">
               {navigation.map((item, index) => (
                 <Link
                   key={index}
                   to={item.href}
                   onClick={() => setIsMenuOpen(false)}
-                  className={`text-left text-sm font-medium transition-colors duration-200 hover:text-green-400 ${
+                  className={`text-left text-sm font-medium transition-colors duration-200 hover:text-green-500 ${
                     isActive(item.href) 
-                      ? 'text-green-400' 
-                      : 'text-gray-300'
+                      ? 'text-green-500' 
+                      : 'text-gray-700 dark:text-gray-300'
                   }`}
                 >
                   {item.name}
@@ -113,10 +113,10 @@ const Header = () => {
               ))}
               
               {/* Mobile Controls */}
-              <div className="flex items-center gap-4 pt-4 border-t border-gray-800">
+              <div className="flex items-center gap-4 pt-4 border-t border-gray-200 dark:border-gray-800">
                 <button
                   onClick={toggleTheme}
-                  className="flex items-center gap-2 p-2 rounded-lg hover:bg-gray-800 transition-colors text-gray-300 hover:text-white"
+                  className="flex items-center gap-2 p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white"
                 >
                   {isDark ? <Sun size={16} /> : <Moon size={16} />}
                   <span className="text-sm">{isDark ? "Mode clair" : "Mode sombre"}</span>
@@ -124,7 +124,7 @@ const Header = () => {
 
                 <button
                   onClick={toggleLanguage}
-                  className="flex items-center gap-2 p-2 rounded-lg hover:bg-gray-800 transition-colors text-gray-300 hover:text-white"
+                  className="flex items-center gap-2 p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white"
                 >
                   <Globe size={16} />
                   <span className="text-sm">{language.toUpperCase()}</span>
