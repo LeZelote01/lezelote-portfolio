@@ -347,12 +347,15 @@ async def get_contact_messages():
     messages = await db.contact_messages.find().sort("submitted_at", -1).to_list(100)
     return [ContactMessage(**message) for message in messages]
 
+class ContactStatusUpdate(BaseModel):
+    status: str
+
 @api_router.put("/contact/{message_id}/status")
-async def update_contact_status(message_id: str, status: str):
+async def update_contact_status(message_id: str, status_update: ContactStatusUpdate):
     """Update contact message status"""
     result = await db.contact_messages.update_one(
         {"id": message_id}, 
-        {"$set": {"status": status}}
+        {"$set": {"status": status_update.status}}
     )
     
     if result.matched_count == 0:
