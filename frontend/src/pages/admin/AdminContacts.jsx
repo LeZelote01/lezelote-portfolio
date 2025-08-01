@@ -422,7 +422,7 @@ const AdminContacts = () => {
                             onClick={() => updateContactStatus(selectedContact.id, 'new')}
                             disabled={actionLoading}
                           >
-                            <MarkAsUnread className="h-4 w-4 mr-2" />
+                            <MailOpen className="h-4 w-4 mr-2" />
                             Marquer non lu
                           </Button>
                           <Button
