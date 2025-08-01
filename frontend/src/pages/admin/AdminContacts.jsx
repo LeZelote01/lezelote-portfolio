@@ -7,7 +7,8 @@ import { Alert, AlertDescription } from '../../components/ui/alert';
 import { useTheme } from '../../context/ThemeContext';
 import { 
   Mail, User, Calendar, MessageSquare, ExternalLink, 
-  ArrowLeft, RefreshCw, Trash2, Eye, CheckCircle 
+  ArrowLeft, RefreshCw, Trash2, Eye, CheckCircle, X, 
+  MoreVertical, FileText, Reply, MarkAsUnread
 } from 'lucide-react';
 
 const AdminContacts = () => {
