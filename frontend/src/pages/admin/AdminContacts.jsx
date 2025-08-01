@@ -16,6 +16,8 @@ const AdminContacts = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const [selectedContact, setSelectedContact] = useState(null);
+  const [showModal, setShowModal] = useState(false);
+  const [actionLoading, setActionLoading] = useState(false);
   const navigate = useNavigate();
   const { isDark } = useTheme();
 
