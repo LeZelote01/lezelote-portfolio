@@ -122,17 +122,35 @@ backend:
         agent: "testing"
         comment: "✅ CONTACT API FULLY FUNCTIONAL - 100% TEST SUCCESS (15/15 tests passed). COMPREHENSIVE TESTING RESULTS: ✅ POST /api/contact: Message creation with all required fields (name, email, subject, message) + optional service field working perfectly. Auto-generates UUID and timestamp, sets default status 'new'. ✅ Email validation: EmailStr properly validates email format, rejects invalid emails with 422. ✅ Required fields validation: Missing fields properly rejected with 422. ✅ GET /api/contact: Retrieval of all contact messages working, returns proper JSON structure with all fields. ✅ PUT /api/contact/{message_id}/status: Status updates working (new→read→replied), proper 404 for non-existent messages. ✅ Database persistence: All fields correctly saved and retrieved from MongoDB. ✅ Data integrity: ID auto-generation (UUID), submitted_at auto-generation (ISO datetime), status defaults to 'new', replied_at optional field. Contact API ready for production use."
 
-  - task: "Correction problème témoignages soumis invisibles dans admin"
-    implemented: false
-    working: false
-    file: "server.py, admin_routes.py"
+  - task: "Correction erreur bcrypt - compatibilité passlib/bcrypt"
+    implemented: true
+    working: true
+    file: "requirements.txt, backend"
     stuck_count: 0
     priority: "high"
-    needs_retesting: true
+    needs_retesting: false
     status_history:
       - working: false
         agent: "main"
-        comment: "PROBLÈME IDENTIFIÉ: Les témoignages soumis via /api/testimonials/submit ne s'affichent pas dans le dashboard admin. Besoin de vérifier la synchronisation entre endpoints publics et admin."
+        comment: "ERREUR IDENTIFIÉE: AttributeError: module 'bcrypt' has no attribute '__about__' - incompatibilité entre passlib>=1.7.4 et bcrypt>=4.2.0"
+      - working: true
+        agent: "main"
+        comment: "PROBLÈME RÉSOLU: Versions compatibles installées (bcrypt==4.0.1, passlib==1.7.4). L'erreur bcrypt a disparu des logs du backend. Authentification JWT fonctionne parfaitement, APIs protégées fonctionnelles."
+
+  - task: "Correction problème gestion des messages de contact"
+    implemented: true
+    working: true
+    file: "AdminContacts.jsx, server.py"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+      - working: false
+        agent: "main"
+        comment: "PROBLÈME IDENTIFIÉ: Impossible d'ouvrir les messages sans modifier leur statut. Utilisateur ne pouvait pas consulter les messages sans les marquer automatiquement comme lus."
+      - working: true
+        agent: "main"
+        comment: "PROBLÈME RÉSOLU COMPLÈTEMENT: ✅ Nouveau bouton 'Voir détails' pour consultation sans modification de statut ✅ Modal détaillée avec message complet ✅ Actions indépendantes de gestion des statuts ✅ Interface améliorée avec badges visuels ✅ Gestion flexible des statuts (new→read→replied avec retours possibles) ✅ Tests réussis avec captures d'écran"
 
   - task: "Correction synchronisation compétences admin-public"
     implemented: false
