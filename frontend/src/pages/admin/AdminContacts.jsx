@@ -65,6 +65,7 @@ const AdminContacts = () => {
 
   const updateContactStatus = async (contactId, status) => {
     try {
+      setActionLoading(true);
       const headers = getAuthHeaders();
       if (!headers) return;
 
@@ -79,10 +80,27 @@ const AdminContacts = () => {
       }
 
       // Refresh contacts list
-      fetchContacts();
+      await fetchContacts();
+      
+      // Update the modal contact if it's currently displayed
+      if (selectedContact && selectedContact.id === contactId) {
+        setSelectedContact({...selectedContact, status});
+      }
     } catch (err) {
       setError(err.message);
+    } finally {
+      setActionLoading(false);
     }
+  };
+
+  const openContactModal = (contact) => {
+    setSelectedContact(contact);
+    setShowModal(true);
+  };
+
+  const closeModal = () => {
+    setShowModal(false);
+    setSelectedContact(null);
   };
 
   const getStatusBadge = (status) => {
