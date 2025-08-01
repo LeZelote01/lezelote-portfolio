@@ -154,6 +154,9 @@ class ContactMessageCreate(BaseModel):
     message: str
     service: Optional[str] = None
 
+class ContactStatusUpdate(BaseModel):
+    status: str
+
 # Testimonial Models
 class PublicTestimonialSubmission(BaseModel):
     name: str
