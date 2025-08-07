@@ -1,0 +1,16 @@
+{
+  "hibp_api_key": null,
+  "monitoring_enabled": true,
+  "check_interval_hours": 1,
+  "notifications": {
+    "email": {
+      "enabled": false,
+      "to_emails": [
+        "admin@example.com"
+      ]
+    },
+    "desktop": {
+      "enabled": true
+    }
+  }
+}

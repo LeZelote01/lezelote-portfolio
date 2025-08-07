@@ -1,0 +1,70 @@
+{
+  "email": {
+    "enabled": false,
+    "smtp_server": "smtp.gmail.com",
+    "smtp_port": 587,
+    "username": "",
+    "password": "",
+    "destinataires": []
+  },
+  "telegram": {
+    "enabled": false,
+    "token": "",
+    "chat_ids": []
+  },
+  "webhook": {
+    "enabled": false,
+    "url": "",
+    "headers": {}
+  },
+  "monitoring": {
+    "log_directories": [
+      "/var/log",
+      "./logs"
+    ],
+    "system_monitoring": true,
+    "check_interval": 30
+  },
+  "regles": [
+    {
+      "id": "failed_login",
+      "nom": "Tentative de connexion échouée",
+      "actif": true,
+      "source": "log_file",
+      "pattern": "(failed|failure|authentication failed|login failed)",
+      "niveau": "WARNING",
+      "description": "Détecte les tentatives de connexion échouées",
+      "canaux": [
+        "email"
+      ],
+      "cooldown": 300
+    },
+    {
+      "id": "cpu_high",
+      "nom": "CPU élevé",
+      "actif": true,
+      "source": "system",
+      "pattern": "CPU_HIGH",
+      "niveau": "WARNING",
+      "description": "CPU utilisation > 90%",
+      "canaux": [
+        "telegram"
+      ],
+      "cooldown": 600
+    },
+    {
+      "id": "disk_full",
+      "nom": "Disque plein",
+      "actif": true,
+      "source": "system",
+      "pattern": "DISK_HIGH",
+      "niveau": "ERROR",
+      "description": "Espace disque < 10%",
+      "canaux": [
+        "email",
+        "telegram"
+      ],
+      "cooldown": 1800
+    }
+  ]
+}

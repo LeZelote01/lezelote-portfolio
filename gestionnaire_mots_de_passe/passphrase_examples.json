@@ -1,0 +1,210 @@
+{
+  "generated_at": "maison",
+  "examples": [
+    {
+      "passphrase": "46BRAVE-Beau-Lumière-CHIEN",
+      "words_used": [
+        "brave",
+        "beau",
+        "lumière",
+        "chien"
+      ],
+      "entropy": 38.17,
+      "strength_estimate": "Faible",
+      "crack_time_estimate": "Quelques semaines",
+      "config": {
+        "num_words": 4,
+        "language": "french",
+        "separator": "-",
+        "capitalize_words": true,
+        "add_numbers": true,
+        "add_symbols": false
+      }
+    },
+    {
+      "passphrase": "5FORÊT-FORCE-CHAUD-aimer",
+      "words_used": [
+        "forêt",
+        "force",
+        "chaud",
+        "aimer"
+      ],
+      "entropy": 38.17,
+      "strength_estimate": "Faible",
+      "crack_time_estimate": "Quelques semaines",
+      "config": {
+        "num_words": 4,
+        "language": "french",
+        "separator": "-",
+        "capitalize_words": true,
+        "add_numbers": true,
+        "add_symbols": false
+      }
+    },
+    {
+      "passphrase": "298nouveau-chanter-VERT-Fraise",
+      "words_used": [
+        "nouveau",
+        "chanter",
+        "vert",
+        "fraise"
+      ],
+      "entropy": 38.17,
+      "strength_estimate": "Faible",
+      "crack_time_estimate": "Quelques semaines",
+      "config": {
+        "num_words": 4,
+        "language": "french",
+        "separator": "-",
+        "capitalize_words": true,
+        "add_numbers": true,
+        "add_symbols": false
+      }
+    },
+    {
+      "passphrase": "90violet-PLEURER-Force-CITRON",
+      "words_used": [
+        "violet",
+        "pleurer",
+        "force",
+        "citron"
+      ],
+      "entropy": 38.17,
+      "strength_estimate": "Faible",
+      "crack_time_estimate": "Quelques semaines",
+      "config": {
+        "num_words": 4,
+        "language": "french",
+        "separator": "-",
+        "capitalize_words": true,
+        "add_numbers": true,
+        "add_symbols": false
+      }
+    },
+    {
+      "passphrase": "Liberté-Jardin-Forêt-Créer2",
+      "words_used": [
+        "liberté",
+        "jardin",
+        "forêt",
+        "créer"
+      ],
+      "entropy": 38.17,
+      "strength_estimate": "Faible",
+      "crack_time_estimate": "Quelques semaines",
+      "config": {
+        "num_words": 4,
+        "language": "french",
+        "separator": "-",
+        "capitalize_words": true,
+        "add_numbers": true,
+        "add_symbols": false
+      }
+    },
+    {
+      "passphrase": "Étoile-ESPOIR-Fort-BONHEUR316",
+      "words_used": [
+        "étoile",
+        "espoir",
+        "fort",
+        "bonheur"
+      ],
+      "entropy": 38.17,
+      "strength_estimate": "Faible",
+      "crack_time_estimate": "Quelques semaines",
+      "config": {
+        "num_words": 4,
+        "language": "french",
+        "separator": "-",
+        "capitalize_words": true,
+        "add_numbers": true,
+        "add_symbols": false
+      }
+    },
+    {
+      "passphrase": "aventure-liberté-VERT-DANSER698",
+      "words_used": [
+        "aventure",
+        "liberté",
+        "vert",
+        "danser"
+      ],
+      "entropy": 38.17,
+      "strength_estimate": "Faible",
+      "crack_time_estimate": "Quelques semaines",
+      "config": {
+        "num_words": 4,
+        "language": "french",
+        "separator": "-",
+        "capitalize_words": true,
+        "add_numbers": true,
+        "add_symbols": false
+      }
+    },
+    {
+      "passphrase": "55jardin-Agité-Fort-froid",
+      "words_used": [
+        "jardin",
+        "agité",
+        "fort",
+        "froid"
+      ],
+      "entropy": 38.17,
+      "strength_estimate": "Faible",
+      "crack_time_estimate": "Quelques semaines",
+      "config": {
+        "num_words": 4,
+        "language": "french",
+        "separator": "-",
+        "capitalize_words": true,
+        "add_numbers": true,
+        "add_symbols": false
+      }
+    },
+    {
+      "passphrase": "liberté-voyage-Penser-lent43",
+      "words_used": [
+        "liberté",
+        "voyage",
+        "penser",
+        "lent"
+      ],
+      "entropy": 38.17,
+      "strength_estimate": "Faible",
+      "crack_time_estimate": "Quelques semaines",
+      "config": {
+        "num_words": 4,
+        "language": "french",
+        "separator": "-",
+        "capitalize_words": true,
+        "add_numbers": true,
+        "add_symbols": false
+      }
+    },
+    {
+      "passphrase": "gris-montagne-Fruit-voler89",
+      "words_used": [
+        "gris",
+        "montagne",
+        "fruit",
+        "voler"
+      ],
+      "entropy": 38.17,
+      "strength_estimate": "Faible",
+      "crack_time_estimate": "Quelques semaines",
+      "config": {
+        "num_words": 4,
+        "language": "french",
+        "separator": "-",
+        "capitalize_words": true,
+        "add_numbers": true,
+        "add_symbols": false
+      }
+    }
+  ],
+  "statistics": {
+    "total_generated": 10,
+    "avg_entropy": 38.17057219744737,
+    "avg_length": 27.6
+  }
+}

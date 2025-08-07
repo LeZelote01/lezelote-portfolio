@@ -1,0 +1,33 @@
+{
+  "device_id": "device_a16b9568",
+  "device_name": "agent-env-2a0c10da-1105-4c48-9023-98d89006a991_Linux",
+  "configs": {
+    "dropbox": {
+      "provider": "dropbox",
+      "enabled": false,
+      "access_token": "***HIDDEN***",
+      "refresh_token": "",
+      "client_id": "",
+      "client_secret": "",
+      "remote_path": "/Apps/PasswordManager/test_sync.enc",
+      "auto_sync": false,
+      "sync_interval": 300,
+      "last_sync": null,
+      "encryption_enabled": true
+    },
+    "google_drive": {
+      "provider": "google_drive",
+      "enabled": false,
+      "access_token": "***HIDDEN***",
+      "refresh_token": "",
+      "client_id": "",
+      "client_secret": "",
+      "remote_path": "PasswordManager/test_sync.enc",
+      "auto_sync": false,
+      "sync_interval": 300,
+      "last_sync": null,
+      "encryption_enabled": true
+    }
+  },
+  "updated_at": "2025-08-03T23:29:12.166914"
+}

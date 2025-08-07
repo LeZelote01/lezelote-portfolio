@@ -1,0 +1,44 @@
+{
+  "sauvegarde": {
+    "dossier_source": "./data",
+    "dossier_destination": "./backups",
+    "nom_base": "backup",
+    "compression_niveau": 6,
+    "chiffrement_actif": true,
+    "exclusions": [
+      "*.tmp",
+      "*.log",
+      "__pycache__",
+      "node_modules",
+      ".git"
+    ]
+  },
+  "rotation": {
+    "max_sauvegardes": 10,
+    "conservation_jours": 30,
+    "rotation_auto": true
+  },
+  "planning": {
+    "actif": false,
+    "frequence": "daily",
+    "heure": "02:00",
+    "jours_semaine": ["monday", "wednesday", "friday"]
+  },
+  "securite": {
+    "iterations_pbkdf2": 100000,
+    "longueur_salt": 32,
+    "verification_integrite": true,
+    "effacement_securise": true
+  },
+  "notifications": {
+    "email_actif": false,
+    "email_destinataire": "admin@exemple.com",
+    "webhook_url": ""
+  },
+  "avance": {
+    "sauvegarde_incrementale": false,
+    "compression_adaptive": true,
+    "parallele": true,
+    "max_workers": 4
+  }
+}

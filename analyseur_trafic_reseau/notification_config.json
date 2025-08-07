@@ -1,0 +1,34 @@
+{
+  "email": {
+    "enabled": false,
+    "smtp_server": "smtp.gmail.com",
+    "smtp_port": 587,
+    "username": "",
+    "password": "",
+    "from_address": "",
+    "to_addresses": [],
+    "use_tls": true
+  },
+  "slack": {
+    "enabled": false,
+    "webhook_url": "",
+    "channel": "#alerts",
+    "username": "TrafficAnalyzer",
+    "icon_emoji": ":warning:"
+  },
+  "webhooks": {
+    "enabled": false,
+    "endpoints": []
+  },
+  "rate_limiting": {
+    "enabled": true,
+    "max_notifications_per_hour": 60,
+    "cooldown_seconds": 300
+  },
+  "alert_thresholds": {
+    "anomaly_count": 5,
+    "packet_rate": 1000,
+    "suspicious_ips": 10,
+    "port_scan_threshold": 20
+  }
+}

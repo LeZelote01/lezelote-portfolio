@@ -1,0 +1,60 @@
+# ================================================================
+# GESTIONNAIRE DE MOTS DE PASSE - DÉPENDANCES COMPLÈTES
+# ================================================================
+# Version unifiée combinant toutes les fonctionnalités :
+# - Core : Chiffrement, interface, gestion
+# - API REST : FastAPI, authentification JWT
+# - Cloud : Synchronisation Google Drive/Dropbox
+# - Tests : Framework de tests automatisés
+# ================================================================
+
+# ----------------------------------------------------------------
+# 🔐 SÉCURITÉ ET CHIFFREMENT (Core)
+# ----------------------------------------------------------------
+cryptography==41.0.7        # Chiffrement AES-256, Fernet, PBKDF2
+bcrypt==4.1.2               # Hachage adaptatif sécurisé
+passlib[bcrypt]==1.7.4      # Extensions bcrypt pour authentification
+
+# ----------------------------------------------------------------
+# 🎨 INTERFACE UTILISATEUR
+# ----------------------------------------------------------------
+pyperclip==1.8.2            # Gestion du presse-papier
+colorama==0.4.6             # Sortie colorée en terminal
+tabulate==0.9.0             # Formatage de tableaux
+
+# ----------------------------------------------------------------
+# 🚀 API REST ET SERVEUR
+# ----------------------------------------------------------------
+fastapi==0.104.1            # Framework API moderne
+uvicorn[standard]==0.24.0   # Serveur ASGI haute performance
+python-jose[cryptography]==3.3.0  # JWT et tokens sécurisés
+python-multipart==0.0.6     # Gestion des formulaires multipart
+pydantic==2.5.0             # Validation de données
+aiofiles==23.2.1            # Gestion asynchrone des fichiers
+
+# ----------------------------------------------------------------
+# ☁️ SYNCHRONISATION CLOUD
+# ----------------------------------------------------------------
+# Google Drive API
+google-api-python-client==2.108.0
+google-auth-httplib2==0.1.1
+google-auth-oauthlib==1.1.0
+google-auth==2.24.0
+
+# Dropbox API
+dropbox==11.36.2
+
+# OAuth et authentification
+authlib==1.2.1             # OAuth2 et authentification avancée
+python-dotenv==1.0.0        # Variables d'environnement
+
+# ----------------------------------------------------------------
+# 🌐 COMMUNICATION ET RÉSEAU
+# ----------------------------------------------------------------
+requests==2.31.0            # Client HTTP synchrone
+httpx==0.25.2              # Client HTTP asynchrone (pour tests)
+
+# ----------------------------------------------------------------
+# 🧪 TESTS ET DÉVELOPPEMENT
+# ----------------------------------------------------------------
+pytest==7.4.3              # Framework de tests

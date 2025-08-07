@@ -1,0 +1,60 @@
+{
+  "manifest_version": 3,
+  "name": "Gestionnaire de Mots de Passe Sécurisé",
+  "version": "2.0.0",
+  "description": "Extension sécurisée pour auto-remplissage et génération de mots de passe",
+  
+  "permissions": [
+    "activeTab",
+    "storage",
+    "nativeMessaging",
+    "contextMenus",
+    "notifications"
+  ],
+  
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  
+  "background": {
+    "service_worker": "../background/background.js"
+  },
+  
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["../content/content.js"],
+      "css": ["../content/content.css"],
+      "run_at": "document_idle"
+    }
+  ],
+  
+  "action": {
+    "default_popup": "../popup/popup.html",
+    "default_title": "Gestionnaire MDP",
+    "default_icon": {
+      "16": "../popup/icons/icon16.png",
+      "32": "../popup/icons/icon32.png",
+      "48": "../popup/icons/icon48.png",
+      "128": "../popup/icons/icon128.png"
+    }
+  },
+  
+  "icons": {
+    "16": "../popup/icons/icon16.png",
+    "32": "../popup/icons/icon32.png",
+    "48": "../popup/icons/icon48.png",
+    "128": "../popup/icons/icon128.png"
+  },
+  
+  "web_accessible_resources": [
+    {
+      "resources": ["../content/inject.js"],
+      "matches": ["<all_urls>"]
+    }
+  ],
+  
+  "native_messaging": {
+    "host": "com.gestionnaire.mdp.native"
+  }
+}

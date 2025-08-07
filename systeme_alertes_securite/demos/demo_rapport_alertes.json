@@ -1,0 +1,64 @@
+{
+  "demo_info": {
+    "timestamp": "2025-08-03T08:44:32.282928",
+    "duration": "demo_complete",
+    "version": "1.0",
+    "generated_by": "demo_alertes.py"
+  },
+  "alertes_generees": 6,
+  "regles_actives": 6,
+  "statistiques": {
+    "globales": {
+      "total": 6,
+      "critiques": 1,
+      "erreurs": 3,
+      "warnings": 2,
+      "info": 0,
+      "non_resolues": 3
+    },
+    "journalieres": [
+      {
+        "date": "2025-08-03",
+        "total": 6,
+        "critiques": 1,
+        "erreurs": 3,
+        "warnings": 2,
+        "info": 0
+      }
+    ],
+    "top_sources": [
+      {
+        "source": "system",
+        "count": 3
+      },
+      {
+        "source": "log:fail2ban.log",
+        "count": 1
+      },
+      {
+        "source": "log:auth.log",
+        "count": 1
+      },
+      {
+        "source": "log:apache2/access.log",
+        "count": 1
+      }
+    ]
+  },
+  "scenarios_testes": [
+    "Tentatives SSH échouées",
+    "Injection SQL",
+    "Attaque par force brute",
+    "CPU élevé",
+    "Disque plein",
+    "Fuite mémoire"
+  ],
+  "fonctionnalites_testees": [
+    "Création d'alertes",
+    "Filtrage par niveau",
+    "Résolution d'alertes",
+    "Génération de statistiques",
+    "Simulation de notifications",
+    "Monitoring système"
+  ]
+}
